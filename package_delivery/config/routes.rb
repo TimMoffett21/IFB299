@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
   get 'onthespotnews', to:'news#CustomerNews' 
+  
+  get 'customeregistration', to:'news#_form'
 
 
   get 'sessions/new'
