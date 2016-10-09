@@ -41,7 +41,9 @@
           </li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to 'Customer Registration', customeregistration_path %></li>
         <% end %>
+            
             <li>
               <%= link_to 'Testimony', testimonies_path %>
             </li>
@@ -55,7 +57,6 @@
                 <li><%= link_to 'Terms and Condition', termsandcondition_path %></li>
               </ul>
             </li>
-            <li><%= link_to 'Customer Registration', customeregistration_path %></li>
             
           </ul>
         </div>
@@ -70,6 +71,8 @@
       <% end %>
       
 <%= yield %>
+
+
 
 </body>
 </html>

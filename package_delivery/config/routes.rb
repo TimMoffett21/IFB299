@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'onthespotnews', to:'news#CustomerNews' 
   
-  get 'customeregistration', to:'news#_form'
+  get 'customeregistration', to:'news#cus_reg'
 
 
   get 'sessions/new'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/termsandcondition', to: "home#index"
   get  '/signup',  to: 'users#new'
   get  '/employeelogin',  to: 'users#show_employee'
+  get  '/edit' , to: 'users#edit'
   post '/signup',  to: 'users#create'
   
   get    '/login',   to: 'sessions#new'
