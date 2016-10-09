@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161004051116) do
-
-
-#ActiveRecord::Schema.define(version: 20161003091437) do
-#ActiveRecord::Schema.define(version: 20161001122317) do
-
-
+ActiveRecord::Schema.define(version: 20161009074021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employee_working_statuses", force: :cascade do |t|
+    t.integer  "employeeid"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fa_q_main_lists", force: :cascade do |t|
     t.string   "FaqMainName"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20161004051116) do
 
   create_table "pickup_histories", force: :cascade do |t|
     t.string   "condition"
-    t.integer  "EmployeeId"
-    t.integer  "PickupId"
+    t.integer  "pickupid"
+    t.integer  "employeeid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20161004051116) do
   end
 
   create_table "test", id: false, force: :cascade do |t|
-    t.text "name", null: false
+    t.text "test"
   end
 
   create_table "testimonies", force: :cascade do |t|
@@ -103,10 +103,9 @@ ActiveRecord::Schema.define(version: 20161004051116) do
     t.string   "name"
     t.string   "email"
     t.string   "identity"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "password_digest"
-    t.string   "status",          default: "Available", null: false
   end
 
 end

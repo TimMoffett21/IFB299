@@ -2,10 +2,10 @@
 
 one:
   condition: MyString
-  EmployeeId: 1
-  PickupId: 1
+  pickupid: 1
+  employeeid: 1
 
 two:
   condition: MyString
-  EmployeeId: 1
-  PickupId: 1
+  pickupid: 1
+  employeeid: 1

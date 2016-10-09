@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
+  
+  
+  
+ 
+  
+  
+  
   resources :fa_q_main_lists
   resources :fa_q_sub_lists
   resources :contacts
@@ -31,6 +38,8 @@ Rails.application.routes.draw do
       get :show
     end
   end
+  get   '/assignjob', to:'users#assignjob'
+  post '/assignjob', to:'users#assignjob'
   resources :users
   
   resources :news

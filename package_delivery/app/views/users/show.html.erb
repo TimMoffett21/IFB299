@@ -19,24 +19,49 @@
         <%= link_to "Register New Employee", signup_path %></br></br>
       </section>
   </aside>
-</div>
-
-<%@employees.each do |s|%>
-      <h4><%=s.name%></h4>
-      <p><%=s.status%>  </p>
-      <% if s.status=="Available"%>
-        <select name="CustomerRequest">
-          <%@pendingrequest.each do |p|%>
-            <option value=<%=p.name%> ><%=p.name%></option>
+  </div>
+  
+  
+  <div id="employee_Available">
+    <h3>Employee Available</h3>
+      <%@employees_available.each do |s|%>
+         <% @selectedemployee = @employee_status.where(["employeeid =?",s.id]).select(:status).take%>
+         <% if @selectedemployee.status=="Available"%>
+            <h4><%=s.name%></h4>
+            <p>Employee id<%=s.id%></p>
+              <%=select_tag"pickup[selected]",options_from_collection_for_select(@pending_pickup, 'id', 'name')%>
+              <%= link_to 'Confirm', assignjob_path(selectedemployee: s, 
+              selectedrequest: 1) %>
+              <button>Cancel</button>
+            </br>
           <%end%>
-        </select>
-        <button>Confirm</button><button>Cancel</button>
-      <%else%>
-        <%@pendingrequest.each do |p|%>
-          <%=p.name%><%=p.pickupscondition%>
-        <%end%>
+        
       <%end%>
-      </br>
-    <%end%>
+  </div>
+  
+  <div id="employee_Pickup">
+    <h3>Employee in Pickup Progress</h3>
+      <%@employees_available.each do |s|%>
+         <% @selectedemployee = @employee_status.where(["employeeid =?",s.id]).select(:status).take%>
+         <% if @selectedemployee.status=="Working"%>
+            <h4><%=s.name%></h4>
+            <p>Employee id<%=s.id%></p>
+            
+            <h4>Responsible Pickup</h4>
+            <% @allpickup.each do |p|%>
+              <% if p.pickupscondition =="Accepted" and p.employeeid == s.id%>
+                  <p>Name: <%=p.name%> &nbsp;&nbsp;&nbsp;Pickup Time: <%=p.pickup_time%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.package_location%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.pickupscondition%></p>
+              <%end%>
+            <%end%>
+            
+            </br>
+          <%end%>
+        
+      <%end%>
+  </div>
+  
+  <div id="employee_Delivery">
+  
+  </div>
     
 </html>

@@ -24,7 +24,7 @@ class PickupsController < ApplicationController
   # POST /pickups
   # POST /pickups.json
   def create
-    @pickup = Pickup.new(picksudos)
+    @pickup = Pickup.new(pickup_params)
 
     respond_to do |format|
       if @pickup.save
