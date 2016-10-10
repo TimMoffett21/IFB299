@@ -1,0 +1,254 @@
+  [1m[36m (185.5ms)[0m  [1mDROP DATABASE IF EXISTS "package_delivery_test"[0m
+  [1m[35m (1292.4ms)[0m  CREATE DATABASE "package_delivery_test" ENCODING = 'SQL_ASCII'
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (56.3ms)[0m  CREATE TABLE "fa_q_main_lists" ("id" serial primary key, "FaqMainName" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (24.3ms)[0m  [1mCREATE TABLE "fa_q_sub_lists" ("id" serial primary key, "SubFaqQuestion" character varying, "SubFaqAnswer" text, "FaqMainLstId" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (21.6ms)[0m  CREATE TABLE "news" ("id" serial primary key, "title" character varying, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (15.5ms)[0m  [1mCREATE TABLE "pickup_histories" ("id" serial primary key, "condition" character varying, "EmployeeId" integer, "PickupId" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (18.7ms)[0m  CREATE TABLE "pickups" ("id" serial primary key, "name" character varying, "company" character varying, "address" character varying, "city" character varying, "state" character varying, "zip" integer, "country" character varying, "number" integer, "shipment_amount" integer, "weight" decimal, "location_type" character varying, "package_location" character varying, "instructions" text, "pickup_date" date, "pickup_time" time, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "employeeid" integer DEFAULT 0 NOT NULL, "pickupscondition" character varying DEFAULT 'Pending' NOT NULL) 
+  [1m[36m (19.1ms)[0m  [1mCREATE TABLE "quotes" ("id" serial primary key, "package_type" text, "quantity" integer, "length" decimal, "width" decimal, "height" decimal, "measurement" text, "weight" decimal, "wcategory" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (18.0ms)[0m  CREATE TABLE "testimonies" ("id" serial primary key, "name" character varying, "text" text, "rating" decimal, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (19.5ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "identity" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "password_digest" character varying, "status" character varying DEFAULT 'Available' NOT NULL, "remember_digest" character varying, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (16.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (17.0ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.8ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (3.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20161010052102')[0m
+  [1m[35m (4.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20161004043145')
+  [1m[36m (2.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20161004050700')[0m
+  [1m[35m (4.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20161004045754')
+  [1m[36m (2.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20161009174724')[0m
+  [1m[35m (2.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20161001122317')
+  [1m[36m (2.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160920024510')[0m
+  [1m[35m (2.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20161003091437')
+  [1m[36m (4.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160919024220')[0m
+  [1m[35m (2.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20161004044004')
+  [1m[36m (5.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20161004051116')[0m
+  [1m[35m (2.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160918114833')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160920024840')[0m
+  [1m[35m (2.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160919024507')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160914125331')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (5.2ms)[0m  ALTER TABLE "fa_q_main_lists" DISABLE TRIGGER ALL;ALTER TABLE "fa_q_sub_lists" DISABLE TRIGGER ALL;ALTER TABLE "news" DISABLE TRIGGER ALL;ALTER TABLE "pickup_histories" DISABLE TRIGGER ALL;ALTER TABLE "pickups" DISABLE TRIGGER ALL;ALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "testimonies" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.7ms)[0m  DELETE FROM "pickups"
+  [1m[36mFixture Insert (1.0ms)[0m  [1mINSERT INTO "pickups" ("name", "company", "address", "city", "state", "zip", "country", "number", "shipment_amount", "weight", "location_type", "package_location", "instructions", "pickup_date", "pickup_time", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 'MyString', 'MyString', 1, 'MyString', 1, 1, 9.99, 'MyString', 'MyString', 'MyText', '2016-09-18', '2016-09-18 11:48:33.000000', '2016-10-10 06:15:56', '2016-10-10 06:15:56', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "pickups" ("name", "company", "address", "city", "state", "zip", "country", "number", "shipment_amount", "weight", "location_type", "package_location", "instructions", "pickup_date", "pickup_time", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 'MyString', 'MyString', 1, 'MyString', 1, 1, 9.99, 'MyString', 'MyString', 'MyText', '2016-09-18', '2016-09-18 11:48:33.000000', '2016-10-10 06:15:56', '2016-10-10 06:15:56', 298486374)
+  [1m[36mFixture Delete (1.0ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "users" ("name", "email", "identity", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', '2016-10-10 06:15:56', '2016-10-10 06:15:56', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "identity", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', '2016-10-10 06:15:56', '2016-10-10 06:15:56', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "testimonies"
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO "testimonies" ("name", "text", "rating", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 9.99, '2016-10-10 06:15:56', '2016-10-10 06:15:56', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "testimonies" ("name", "text", "rating", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 9.99, '2016-10-10 06:15:56', '2016-10-10 06:15:56', 298486374)
+  [1m[36mFixture Delete (2.9ms)[0m  [1mDELETE FROM "news"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "news" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', '2016-10-10 06:15:56', '2016-10-10 06:15:56', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "news" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', '2016-10-10 06:15:56', '2016-10-10 06:15:56', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "pickup_histories"
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO "pickup_histories" ("condition", "EmployeeId", "PickupId", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, '2016-10-10 06:15:56', '2016-10-10 06:15:56', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "pickup_histories" ("condition", "EmployeeId", "PickupId", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, '2016-10-10 06:15:56', '2016-10-10 06:15:56', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM "fa_q_main_lists"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "fa_q_main_lists" ("FaqMainName", "created_at", "updated_at", "id") VALUES ('MyString', '2016-10-10 06:15:57', '2016-10-10 06:15:57', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "fa_q_main_lists" ("FaqMainName", "created_at", "updated_at", "id") VALUES ('MyString', '2016-10-10 06:15:57', '2016-10-10 06:15:57', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "fa_q_sub_lists"
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO "fa_q_sub_lists" ("SubFaqQuestion", "SubFaqAnswer", "FaqMainLstId", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, '2016-10-10 06:15:57', '2016-10-10 06:15:57', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "fa_q_sub_lists" ("SubFaqQuestion", "SubFaqAnswer", "FaqMainLstId", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, '2016-10-10 06:15:57', '2016-10-10 06:15:57', 298486374)
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM "quotes"[0m
+  [1m[35mFixture Insert (0.6ms)[0m  INSERT INTO "quotes" ("package_type", "quantity", "length", "width", "height", "measurement", "weight", "wcategory", "created_at", "updated_at", "id") VALUES ('MyText', 1, 9.99, 9.99, 9.99, 'MyText', 9.99, 'MyText', '2016-10-10 06:15:57', '2016-10-10 06:15:57', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "quotes" ("package_type", "quantity", "length", "width", "height", "measurement", "weight", "wcategory", "created_at", "updated_at", "id") VALUES ('MyText', 1, 9.99, 9.99, 9.99, 'MyText', 9.99, 'MyText', '2016-10-10 06:15:57', '2016-10-10 06:15:57', 298486374)[0m
+  [1m[35m (9.1ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "fa_q_main_lists" ENABLE TRIGGER ALL;ALTER TABLE "fa_q_sub_lists" ENABLE TRIGGER ALL;ALTER TABLE "news" ENABLE TRIGGER ALL;ALTER TABLE "pickup_histories" ENABLE TRIGGER ALL;ALTER TABLE "pickups" ENABLE TRIGGER ALL;ALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "testimonies" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+PickupsControllerTest: test_should_get_index
+--------------------------------------------
+  [1m[36mPickup Load (0.5ms)[0m  [1mSELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+Processing by PickupsController#index as HTML
+  [1m[35mPickup Load (0.8ms)[0m  SELECT "pickups".* FROM "pickups"
+  Rendered pickups/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 9575ms (Views: 9573.5ms | ActiveRecord: 0.8ms)
+  [1m[36m (3.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+------------------------------------------
+PickupsControllerTest: test_should_get_new
+------------------------------------------
+  [1m[36mPickup Load (10.3ms)[0m  [1mSELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+Processing by PickupsController#new as HTML
+  Rendered pickups/_form.html.erb (946.5ms)
+  Rendered pickups/new.html.erb within layouts/application (958.9ms)
+Completed 200 OK in 965ms (Views: 964.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (15.4ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+PickupsControllerTest: test_should_show_pickup
+----------------------------------------------
+  [1m[35mPickup Load (6.8ms)[0m  SELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1  [["id", 980190962]]
+Processing by PickupsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPickup Load (0.6ms)[0m  [1mSELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+  Rendered pickups/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 20ms (Views: 10.1ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (1.7ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+PickupsControllerTest: test_should_update_pickup
+------------------------------------------------
+  [1m[35mPickup Load (1.2ms)[0m  SELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1  [["id", 980190962]]
+Processing by PickupsController#update as HTML
+  Parameters: {"pickup"=>{"address"=>"MyString", "city"=>"MyString", "company"=>"MyString", "country"=>"MyString", "instructions"=>"MyText", "location_type"=>"MyString", "name"=>"MyString", "number"=>"1", "package_location"=>"MyString", "pickup_date"=>"2016-09-18", "pickup_time"=>"2000-01-01 11:48:33 UTC", "shipment_amount"=>"1", "state"=>"MyString", "weight"=>"9.99", "zip"=>"1"}, "id"=>"980190962"}
+  [1m[36mPickup Load (0.5ms)[0m  [1mSELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered pickups/_form.html.erb (13.8ms)
+  Rendered pickups/edit.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 33ms (Views: 22.2ms | ActiveRecord: 1.1ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+PickupsControllerTest: test_should_create_pickup
+------------------------------------------------
+  [1m[35mPickup Load (0.3ms)[0m  SELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "pickups"[0m
+Processing by PickupsController#create as HTML
+  Parameters: {"pickup"=>{"address"=>"MyString", "city"=>"MyString", "company"=>"MyString", "country"=>"MyString", "instructions"=>"MyText", "location_type"=>"MyString", "name"=>"MyString", "number"=>"1", "package_location"=>"MyString", "pickup_date"=>"2016-09-18", "pickup_time"=>"2000-01-01 11:48:33 UTC", "shipment_amount"=>"1", "state"=>"MyString", "weight"=>"9.99", "zip"=>"1"}}
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+PickupsControllerTest: test_should_destroy_pickup
+-------------------------------------------------
+  [1m[35mPickup Load (0.4ms)[0m  SELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "pickups"[0m
+Processing by PickupsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mPickup Load (0.3ms)[0m  SELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  DELETE FROM "pickups" WHERE "pickups"."id" = $1  [["id", 980190962]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/pickups
+Completed 302 Found in 6ms (ActiveRecord: 1.8ms)
+  [1m[35m (1.6ms)[0m  SELECT COUNT(*) FROM "pickups"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------
+PickupsControllerTest: test_should_get_edit
+-------------------------------------------
+  [1m[36mPickup Load (0.3ms)[0m  [1mSELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+Processing by PickupsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mPickup Load (0.4ms)[0m  SELECT  "pickups".* FROM "pickups" WHERE "pickups"."id" = $1 LIMIT 1  [["id", 980190962]]
+  Rendered pickups/_form.html.erb (14.4ms)
+  Rendered pickups/edit.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------
+NewsControllerTest: test_should_get_CustomerNews
+------------------------------------------------
+Processing by NewsController#CustomerNews as HTML
+  [1m[36mNews Load (0.7ms)[0m  [1mSELECT "news".* FROM "news"[0m
+  Rendered news/CustomerNews.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+HomeControllerTest: test_should_get_index
+-----------------------------------------
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 14ms (Views: 13.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+QuotesControllerTest: test_should_destroy_quote
+-----------------------------------------------
+  [1m[35mQuote Load (0.6ms)[0m  SELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "quotes"[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuotesControllerTest: test_should_show_quote
+--------------------------------------------
+  [1m[35mQuote Load (0.6ms)[0m  SELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1  [["id", 980190962]]
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mQuote Load (0.5ms)[0m  [1mSELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+  Rendered quotes/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 34ms (Views: 19.9ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuotesControllerTest: test_should_update_quote
+----------------------------------------------
+  [1m[35mQuote Load (0.5ms)[0m  SELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+----------------------------------------------
+QuotesControllerTest: test_should_create_quote
+----------------------------------------------
+  [1m[36mQuote Load (0.4ms)[0m  [1mSELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "quotes"
+Processing by QuotesController#create as HTML
+  Parameters: {"quote"=>{"height"=>"9.99", "length"=>"9.99", "measurement"=>"MyText", "package_type"=>"MyText", "quantity"=>"1", "wcategory"=>"MyText", "weight"=>"9.99", "width"=>"9.99"}}
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (11.9ms)[0m  INSERT INTO "quotes" ("package_type", "quantity", "length", "width", "height", "measurement", "weight", "wcategory", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["package_type", "MyText"], ["quantity", 1], ["length", "9.99"], ["width", "9.99"], ["height", "9.99"], ["measurement", "MyText"], ["weight", "9.99"], ["wcategory", "MyText"], ["created_at", "2016-10-10 06:16:08.136004"], ["updated_at", "2016-10-10 06:16:08.136004"]]
+  [1m[36m (0.3ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/quotes/980190963
+Completed 302 Found in 22ms (ActiveRecord: 12.6ms)
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "quotes"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+-------------------------------------------
+QuotesControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[36mQuote Load (0.9ms)[0m  [1mSELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+Processing by QuotesController#index as HTML
+  [1m[35mQuote Load (0.6ms)[0m  SELECT "quotes".* FROM "quotes"
+  Rendered quotes/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 13ms (Views: 12.1ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------
+QuotesControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mQuote Load (0.7ms)[0m  [1mSELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+Processing by QuotesController#new as HTML
+  Rendered quotes/_form.html.erb (0.8ms)
+  Rendered quotes/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (2.7ms)[0m  ROLLBACK
+  [1m[36m (2.2ms)[0m  [1mBEGIN[0m
+------------------------------------------
+QuotesControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35mQuote Load (1.0ms)[0m  SELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1  [["id", 980190962]]
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mQuote Load (0.3ms)[0m  [1mSELECT  "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT 1[0m  [["id", 980190962]]
+  Rendered quotes/_form.html.erb (0.1ms)
+  Rendered quotes/edit.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+SessionsControllerTest: test_should_get_new
+-------------------------------------------
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 41ms (Views: 40.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+FaQControllerTest: test_should_get_customer_faq
+-----------------------------------------------
+Processing by FaQController#customer_faq as HTML
+  Rendered shared/_accordion_function.html.erb (0.9ms)
+  [1m[35mFaQMainList Load (0.5ms)[0m  SELECT "fa_q_main_lists".* FROM "fa_q_main_lists"
+  [1m[36mFaQSubList Load (0.4ms)[0m  [1mSELECT "fa_q_sub_lists".* FROM "fa_q_sub_lists" WHERE "fa_q_sub_lists"."FaqMainLstId" = $1[0m  [["FaqMainLstId", 980190962]]
+  [1m[35mFaQSubList Load (0.2ms)[0m  SELECT "fa_q_sub_lists".* FROM "fa_q_sub_lists" WHERE "fa_q_sub_lists"."FaqMainLstId" = $1  [["FaqMainLstId", 298486374]]
+  Rendered fa_q/customer_faq.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 28ms (Views: 26.1ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+----------------------------------------------
+FaQControllerTest: test_should_get_manager_faq
+----------------------------------------------
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m

@@ -1,74 +1,123 @@
 <!DOCTYPE html>
 <html>  
-<h1>Manager Login</h1>
-  <div class="row">
+  <% if @user.identity != "manager" && @user.identity != "driver" %>
+    <% @user.identity = "customer" %> 
+     <!-- don't know how to set identity to "customer",
+     so neither a manager nor drive would force set to customer.-->
+  <% end %>
+  <h1>
+    <% if @user.identity == "manager" %> 
+      Manager 
+      <% @user.admin = true %> <!-- Tricks setting manager into admin -->
+    <% elsif @user.identity == "driver" %> Driver 
+    <% elsif @user.identity == "customer" %> Customer 
+    <% end %>
+    Portal
+  </h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-        <%= @user.email%>
-        <%= @user.identity%>
+        <%= gravatar_for @user %><br>
+        Name: <%= @user.name %><br>
+        Email: <%= @user.email%><br>
+        <% if @user.identity == "manager" || @user.identity == "driver" %> 
+          Position: <%= @user.identity%><br>
+        <% elsif @user.identity == "customer" %>
+          You are our respectful customer!
+        <% end %>
       </h1>
     </section>
-    <aside class="col-md-4">
-      <section>
+    <hr>
+    <!--aside class="col-md-4"-->
+    <section>
+      <h1>
+      <% if @user.identity == "manager" %>
         <%= link_to "Manage Faq",   fa_q_sub_lists_path %></br></br>
-         <%= link_to "Manage News", news_path%></br></br>
+        <%= link_to "Manage News", news_path%></br></br>
         <%= link_to "Manage Quote",  controller: 'pickups' %></br></br>
         <%= link_to "Register New Employee", signup_path %></br></br>
+        <%= link_to "Show All Users", all_user_path %></br></br>
+        
+        <div id="employee_Available">
+        <h3>Pending Request</h3>
+          <%if @pending_pickup.count ==0%>
+            <p><label>Request Name : </lable><label> Pickup Time :</lable></p>
+            <h4>No Available Pickup Request</h4>
+            </br></br>
+          <%else%>
+              <%@pending_pickup.each do |pr|%>
+              <%= form_tag("/assignjob", method: "post") do %>
+              <%=label_tag(:name,"Request Name : " + pr.name)%>
+              <%=label_tag(:pickup_time,"Pickup Time : " + pr.pickup_time.to_s)%>
+              
+              <%@getrid= pr.id%>
+              <%= hidden_field_tag :rid, @getrid %>
+              <%=hidden_field(:get, :dunno, :value => "try")%>
+              </br>
+              <%=label_tag(:Employee,"Responsible Employee :")%>
+              <%= collection_select(:employeeid, :eid,@employees_available, :id, :name,
+                  {:include_blank => false })%>
+              <%= submit_tag("Confirm")%>
+              </br></br>
+              <%end%>
+            <%end%>
+          <%end%>
+        </div>
+        <div id="employee_Pickup">
+          <h3>Employee Working Status</h3>
+            <%@employees_available.each do |s|%>
+              <h4><%=s.name%></h4>
+              <p>Employee id<%=s.id%></p>
+              <h4>Responsible Pickup</h4>
+                  <% @allpickup.each do |p|%>
+                    <% if p.pickupscondition =="Accepted" and p.employeeid == s.id%>
+                        <p>Name: <%=p.name%> &nbsp;&nbsp;&nbsp;Pickup Time: <%=p.pickup_time%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.package_location%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.pickupscondition%></p>
+                    <%end%>
+                  <%end%>
+                  </br>
+            <%end%>
+        </div>
+        <div id="employee_Delivery">
+        
+        </div>
+      <% elsif @user.identity == "driver" %>
+      
+      <% elsif @user.identity == "customer" %> 
+        <%= link_to 'New Pickup', new_pickup_path %><br><br>
+      <% end %>
+      <%= link_to "Update My Profile", edit_user_path(current_user) %></br></br>
+      </h1>
+    </section>
+    <!--/aside-->
+  </div>
+</div>
+<% if @user.identity == "driver"  %>
+  <%@employees.each do |s| %>
+    <h4><%=s.name%></h4>
+    <p><%=s.status%></p>
+    <% if s.status=="Available"%>
+      <select name="CustomerRequest">
+        <%@pendingrequest.each do |p| %>
+          <option value=<%=p.name%> ><%=p.name%></option>
+        <% end %>
+      </select>
+      <button>Confirm</button><button>Cancel</button>
+    <%else%>
+      <%@pendingrequest.each do |p| %>
+        <%=p.name%><%=p.pickupscondition%>
+      <% end %>
+    <% end %>
+    </br>
+  <% end %>
+  
+<% end %>
+
       
         
       
       </section>
   </aside>
   </div>
-  
-  
-  <div id="employee_Available">
-    <h3>Pending Request</h3>
-      <%if @pending_pickup.count ==0%>
-        <p><label>Request Name : </lable><label> Pickup Time :</lable></p>
-        <h4>No Available Pickup Request</h4>
-        </br></br>
-      <%else%>
-          <%@pending_pickup.each do |pr|%>
-          <%= form_tag("/assignjob", method: "post") do %>
-          <%=label_tag(:name,"Request Name : " + pr.name)%>
-          <%=label_tag(:pickup_time,"Pickup Time : " + pr.pickup_time.to_s)%>
-          
-          <%@getrid= pr.id%>
-          <%= hidden_field_tag :rid, @getrid %>
-          <%=hidden_field(:get, :dunno, :value => "try")%>
-          </br>
-          <%=label_tag(:Employee,"Responsible Employee :")%>
-          <%= collection_select(:employeeid, :eid,@employees_available, :id, :name,
-              {:include_blank => false })%>
-          <%= submit_tag("Confirm")%>
-          </br></br>
-          <%end%>
-        <%end%>
-      <%end%>
-      
-  </div>
-  
-  <div id="employee_Pickup">
-    <h3>Employee Working Status</h3>
-      <%@employees_available.each do |s|%>
-        <h4><%=s.name%></h4>
-        <p>Employee id<%=s.id%></p>
-        <h4>Responsible Pickup</h4>
-            <% @allpickup.each do |p|%>
-              <% if p.pickupscondition =="Accepted" and p.employeeid == s.id%>
-                  <p>Name: <%=p.name%> &nbsp;&nbsp;&nbsp;Pickup Time: <%=p.pickup_time%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.package_location%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.pickupscondition%></p>
-              <%end%>
-            <%end%>
-            </br>
-      <%end%>
-  </div>
-  
-  <div id="employee_Delivery">
-  
-  </div>
-    
 </html>
