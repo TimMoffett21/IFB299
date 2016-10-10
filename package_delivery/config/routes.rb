@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   get '/termsandcondition', to: "home#index"
   get  '/signup',  to: 'users#new'
   get  '/employeelogin',  to: 'users#show_employee'
+  get  '/customerlogin', to: 'users#show_customer'
+  get  '/edit_user' , to: 'users#edit'
+  get  '/all_user', to: 'users#index'
   get  '/edit' , to: 'users#edit'
+  
   post '/signup',  to: 'users#create'
   
   get    '/login',   to: 'sessions#new'

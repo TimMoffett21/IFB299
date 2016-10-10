@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 <html>  
-<h1>Manager Login</h1>
-  <div class="row">
+  <% if @user.identity != "manager" && @user.identity != "driver" %>
+    <% @user.identity = "customer" %> 
+     <!-- don't know how to set identity to "customer",
+     so neither a manager nor drive would force set to customer.-->
+  <% end %>
+  <h1>
+    <% if @user.identity == "manager" %> 
+      Manager 
+      <% @user.admin = true %> <!-- Tricks setting manager into admin -->
+    <% elsif @user.identity == "driver" %> Driver 
+    <% elsif @user.identity == "customer" %> Customer 
+    <% end %>
+    Portal
+  </h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %><br>
         Name: <%= @user.name %><br>
         Email: <%= @user.email%><br>
-        Position: <%= @user.identity%><br>
+        <% if @user.identity == "manager" || @user.identity == "driver" %> 
+          Position: <%= @user.identity%><br>
+        <% elsif @user.identity == "customer" %>
+          You are our respectful customer!
+        <% end %>
       </h1>
     </section>
-    <aside class="col-md-4">
-      <section>
+    <hr>
+    <!--aside class="col-md-4"-->
+    <section>
+      <h1>
+      <% if @user.identity == "manager" %>
         <%= link_to "Manage Faq",   fa_q_sub_lists_path %></br></br>
         <%= link_to "Manage News", news_path%></br></br>
         <%= link_to "Manage Quote",  controller: 'pickups' %></br></br>
         <%= link_to "Register New Employee", signup_path %></br></br>
-        <%= link_to "Edit users", edit_path %></br></br>
-      </section>
-  </aside>
+        <%= link_to "Show All Users", all_user_path %></br></br>
+      <% elsif @user.identity == "driver" %>
+      
+      <% elsif @user.identity == "customer" %> 
+        <%= link_to 'New Pickup', new_pickup_path %><br><br>
+      <% end %>
+      <%= link_to "Update My Profile", edit_user_path(current_user) %></br></br>
+      </h1>
+    </section>
+    <!--/aside-->
+  </div>
 </div>
+<% if @user.identity == "driver"  %>
+  <%@employees.each do |s| %>
+    <h4><%=s.name%></h4>
+    <p><%=s.status%></p>
+    <% if s.status=="Available"%>
+      <select name="CustomerRequest">
+        <%@pendingrequest.each do |p| %>
+          <option value=<%=p.name%> ><%=p.name%></option>
+        <% end %>
+      </select>
+      <button>Confirm</button><button>Cancel</button>
+    <%else%>
+      <%@pendingrequest.each do |p| %>
+        <%=p.name%><%=p.pickupscondition%>
+      <% end %>
+    <% end %>
+    </br>
+  <% end %>
+  
+<% end %>
 
-<%@employees.each do |s|%>
-      <h4><%=s.name%></h4>
-      <p><%=s.status%></p>
-      <% if s.status=="Available"%>
-        <select name="CustomerRequest">
-          <%@pendingrequest.each do |p|%>
-            <option value=<%=p.name%> ><%=p.name%></option>
-          <%end%>
-        </select>
-        <button>Confirm</button><button>Cancel</button>
-      <%else%>
-        <%@pendingrequest.each do |p|%>
-          <%=p.name%><%=p.pickupscondition%>
-        <%end%>
-      <%end%>
-      </br>
-    <%end%>
-    
 </html>
