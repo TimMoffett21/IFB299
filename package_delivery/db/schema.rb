@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20161010052102) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "password_digest"
+    t.string   "status",          default: "Available", null: false
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
   end
