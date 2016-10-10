@@ -4,12 +4,12 @@ class UsersController < ApplicationController
     @loginuser = params[:id]
     @employees_available = User.where("identity = 'driver'")
     @employee_status = EmployeeWorkingStatus.all
-    @selected_employee
+   
     @pending_delivery = Pickup.where(:pickupscondition=>"Pickup Complete")
     @pending_pickup = Pickup.where( "(pickupscondition ='Pending') or pickupscondition ='pending'")
-    @testpickup = Pickup.find(1)
+    
     @allpickup = Pickup.all
-    @selected_pickup
+   
     
   end
   
