@@ -77,19 +77,87 @@ class UsersController < ApplicationController
   
 
   def assignjob
-   
-    @selectedemployee = EmployeeWorkingStatus.find_by(employeeid: params[:employeeid][:eid])
-    Rails.logger.debug("My object: #{@selectedemployee.id}")
-    @selectedemployee.update_attributes(status:"Working")
-    @selectedemployee.save
     
     @selectedrequest = Pickup.find(params[:rid])
-    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:employeeid][:eid])
+    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:pickupemployeeid][:eid],deliveryemployee_id: params[:deliveryemployeeid][:deid])
     @selectedrequest.save
     
-    @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:employeeid][:eid],pickupid: @selectedrequest.id)
+    @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:pickupemployeeid][:eid],pickupid: @selectedrequest.id)
     @pickup.save
     redirect_to current_user
+  end
+  
+  def updatepickupstatusnext
+    
+    @request = Pickup.find(params[:selectedrequest])
+    if @request.pickupscondition == "Accepted"
+      @procedures = "Pickup in Progress"
+      @updatecondition =1
+    elsif @request.pickupscondition == "Pickup in Progress"
+      @procedures = "Pickup Completed"
+       @updatecondition =1
+    elsif @request.pickupscondition == "Pickup Completed"
+      @procedures = "Package in Store"
+      @updatecondition =1
+    end
+    
+    if  @updatecondition ==1
+      @request.update_attributes(pickupscondition: @procedures)
+      redirect_to current_user
+    end
+    
+   
+  end
+  
+  def updatepickupstatusback
+    
+    @request = Pickup.find(params[:selectedrequest])
+    if @request.pickupscondition == "Pickup in Progress"
+      @procedures = "Accepted"
+      @updatecondition =1
+    elsif @request.pickupscondition == "Pickup Completed"
+      @procedures = "Pickup in Progress"
+      @updatecondition =1
+    end
+    
+    if  @updatecondition ==1
+      @request.update_attributes(pickupscondition: @procedures)
+      redirect_to current_user
+    end
+  end
+  
+  def updatedeliverystatusnext
+    
+    @request = Pickup.find(params[:selecteddrequest])
+    if @request.pickupscondition == "Package in Store"
+      @procedures = "Delivery in Progress"
+      @updatecondition =1
+    elsif @request.pickupscondition == "Delivery in Progress"
+      @procedures = "Delivery Completed"
+      @updatecondition =1
+    elsif @request.pickupscondition == "Delivery Completed"
+      @procedures = "Request Completed"
+      @updatecondition =1
+    end
+    
+    if  @updatecondition ==1
+      @request.update_attributes(pickupscondition: @procedures)
+      redirect_to current_user
+    end
+  end
+  
+  def updatedeliverystatusback
+    @request = Pickup.find(params[:selecteddrequest])
+    if @request.pickupscondition == "Delivery in Progress"
+      @procedures = "Package in Store"
+    elsif @request.pickupscondition == "Delivery Completed"
+      @procedures = "Delivery in Progress"
+    end
+    
+    if  @updatecondition ==1
+      @request.update_attributes(pickupscondition: @procedures)
+      redirect_to current_user
+    end
   end
   
   

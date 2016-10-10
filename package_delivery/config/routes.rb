@@ -47,6 +47,19 @@ Rails.application.routes.draw do
   end
   get   '/assignjob', to:'users#assignjob'
   post '/assignjob', to:'users#assignjob'
+  
+  get   '/updatepickupstatusnext', to:'users#updatepickupstatusnext'
+  post '/updatepickupstatusnext', to:'users#updatepickupstatusnext'
+  
+  get   '/updatepickupstatusback', to:'users#updatepickupstatusback'
+  post '/updatepickupstatusback', to:'users#updatepickupstatusback'
+  
+   get   '/updatedeliverystatusnext', to:'users#updatedeliverystatusnext'
+  post '/updatedeliverystatusnext', to:'users#updatedeliverystatusnext'
+  
+  get   '/updatedeliverystatusback', to:'users#updatedeliverystatusback'
+  post '/updatedeliverystatusback', to:'users#updatedeliverystatusback'
+  
   resources :users
   
   resources :news

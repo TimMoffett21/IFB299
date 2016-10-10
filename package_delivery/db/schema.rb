@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010052102) do
+ActiveRecord::Schema.define(version: 20161010141308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,10 +68,11 @@ ActiveRecord::Schema.define(version: 20161010052102) do
     t.text     "instructions"
     t.date     "pickup_date"
     t.time     "pickup_time"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "employeeid",       default: 0,         null: false
-    t.string   "pickupscondition", default: "Pending", null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "employeeid",          default: 0,         null: false
+    t.string   "pickupscondition",    default: "Pending", null: false
+    t.integer  "deliveryemployee_id", default: 0,         null: false
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -85,6 +86,10 @@ ActiveRecord::Schema.define(version: 20161010052102) do
     t.text     "wcategory"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "test", id: false, force: :cascade do |t|
+    t.text "test"
   end
 
   create_table "testimonies", force: :cascade do |t|
@@ -102,7 +107,6 @@ ActiveRecord::Schema.define(version: 20161010052102) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "password_digest"
-    t.string   "status",          default: "Available", null: false
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
   end
