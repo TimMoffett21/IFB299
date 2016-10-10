@@ -17,47 +17,53 @@
          <%= link_to "Manage News", news_path%></br></br>
         <%= link_to "Manage Quote",  controller: 'pickups' %></br></br>
         <%= link_to "Register New Employee", signup_path %></br></br>
-        <%= link_to "Edit users", %></br></br>
+      
+        
+      
       </section>
   </aside>
   </div>
   
   
   <div id="employee_Available">
-    <h3>Employee Available</h3>
-      <%@employees_available.each do |s|%>
-         <% @selectedemployee = @employee_status.where(["employeeid =?",s.id]).select(:status).take%>
-         <% if @selectedemployee.status=="Available"%>
-            <h4><%=s.name%></h4>
-            <p>Employee id<%=s.id%></p>
-              <%=select_tag"pickup[selected]",options_from_collection_for_select(@pending_pickup, 'id', 'name')%>
-              <%= link_to 'Confirm', assignjob_path(selectedemployee: s, 
-              selectedrequest: 1) %>
-              <button>Cancel</button>
-            </br>
+    <h3>Pending Request</h3>
+      <%if @pending_pickup.count ==0%>
+        <p><label>Request Name : </lable><label> Pickup Time :</lable></p>
+        <h4>No Available Pickup Request</h4>
+        </br></br>
+      <%else%>
+          <%@pending_pickup.each do |pr|%>
+          <%= form_tag("/assignjob", method: "post") do %>
+          <%=label_tag(:name,"Request Name : " + pr.name)%>
+          <%=label_tag(:pickup_time,"Pickup Time : " + pr.pickup_time.to_s)%>
+          
+          <%@getrid= pr.id%>
+          <%= hidden_field_tag :rid, @getrid %>
+          <%=hidden_field(:get, :dunno, :value => "try")%>
+          </br>
+          <%=label_tag(:Employee,"Responsible Employee :")%>
+          <%= collection_select(:employeeid, :eid,@employees_available, :id, :name,
+              {:include_blank => false })%>
+          <%= submit_tag("Confirm")%>
+          </br></br>
           <%end%>
-        
+        <%end%>
       <%end%>
+      
   </div>
   
   <div id="employee_Pickup">
-    <h3>Employee in Pickup Progress</h3>
+    <h3>Employee Working Status</h3>
       <%@employees_available.each do |s|%>
-         <% @selectedemployee = @employee_status.where(["employeeid =?",s.id]).select(:status).take%>
-         <% if @selectedemployee.status=="Working"%>
-            <h4><%=s.name%></h4>
-            <p>Employee id<%=s.id%></p>
-            
-            <h4>Responsible Pickup</h4>
+        <h4><%=s.name%></h4>
+        <p>Employee id<%=s.id%></p>
+        <h4>Responsible Pickup</h4>
             <% @allpickup.each do |p|%>
               <% if p.pickupscondition =="Accepted" and p.employeeid == s.id%>
                   <p>Name: <%=p.name%> &nbsp;&nbsp;&nbsp;Pickup Time: <%=p.pickup_time%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.package_location%>&nbsp;&nbsp;&nbsp; Pickup Location: <%=p.pickupscondition%></p>
               <%end%>
             <%end%>
-            
             </br>
-          <%end%>
-        
       <%end%>
   </div>
   

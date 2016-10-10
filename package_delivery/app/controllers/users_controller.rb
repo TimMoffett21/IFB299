@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @selected_employee
     @pending_delivery = Pickup.where(:pickupscondition=>"Pickup Complete")
     @pending_pickup = Pickup.where( "(pickupscondition ='Pending') or pickupscondition ='pending'")
+    @testpickup = Pickup.find(1)
     @allpickup = Pickup.all
     @selected_pickup
     
@@ -40,20 +41,26 @@ class UsersController < ApplicationController
   end
   
   def assignjob
-    @selectedemployee = EmployeeWorkingStatus.find_by(employeeid: params[:selectedemployee])
+   
+    @selectedemployee = EmployeeWorkingStatus.find_by(employeeid: params[:employeeid][:eid])
     Rails.logger.debug("My object: #{@selectedemployee.id}")
     @selectedemployee.update_attributes(status:"Working")
     @selectedemployee.save
     
-    @selectedrequest = Pickup.find(params[:selectedrequest])
-    Rails.logger.debug("My object: #{@selectedrequest.id}")
-    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: @selectedemployee.id)
+    @selectedrequest = Pickup.find(params[:rid])
+    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:employeeid][:eid])
     @selectedrequest.save
+    
+    
+    
+    
+    
+    
    
     
-    @pickup =PickupHistory.new(condition:"Accepted",employeeid: @selectedemployee.id,pickupid: @selectedrequest.id)
+    @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:employeeid][:eid],pickupid: @selectedrequest.id)
     @pickup.save
-    redirect_to home_path
+    redirect_to current_user
   end
   
   
@@ -68,6 +75,7 @@ class UsersController < ApplicationController
     def employeestatus_params
       params.require(:employee_working_statuses).permit(:employeeid, :status)
     end
+    
     
   
 end
