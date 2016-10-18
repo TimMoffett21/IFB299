@@ -80,5 +80,10 @@
   <%= @pickup.pickupscondition %>
 </p>
 
+<p>
+  <strong>Pickup Customer id:</strong>
+  <%= @pickup.customer_id %>
+</p>
+
 <%= link_to 'Edit', edit_pickup_path(@pickup) %> |
 <%= link_to 'Back', pickups_path %>

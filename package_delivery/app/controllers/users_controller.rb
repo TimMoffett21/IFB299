@@ -18,6 +18,10 @@ class UsersController < ApplicationController
     @allpickup = Pickup.all
     @employee_status = EmployeeWorkingStatus.all
     @pendingrequest = Pickup.where( "(pickupscondition ='Pending') or pickupscondition ='pending'")
+  
+    @customerpickup = Pickup.where("customer_id =?", @user.id.to_i)
+    @customerpickuphistory = PickupHistory.all
+    
   end
   
   def show_employee
@@ -84,6 +88,7 @@ class UsersController < ApplicationController
     
     @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:pickupemployeeid][:eid],pickupid: @selectedrequest.id)
     @pickup.save
+    
     redirect_to current_user
   end
   
@@ -102,7 +107,7 @@ class UsersController < ApplicationController
     end
     
     if  @updatecondition ==1
-      @request.update_attributes(pickupscondition: @procedures)
+      updatepickuprecord
       redirect_to current_user
     end
     
@@ -122,6 +127,7 @@ class UsersController < ApplicationController
     
     if  @updatecondition ==1
       @request.update_attributes(pickupscondition: @procedures)
+      updatepickuprecord
       redirect_to current_user
     end
   end
@@ -142,6 +148,7 @@ class UsersController < ApplicationController
     
     if  @updatecondition ==1
       @request.update_attributes(pickupscondition: @procedures)
+      updatepickuprecord
       redirect_to current_user
     end
   end
@@ -156,6 +163,7 @@ class UsersController < ApplicationController
     
     if  @updatecondition ==1
       @request.update_attributes(pickupscondition: @procedures)
+      updatepickuprecord
       redirect_to current_user
     end
   end
@@ -188,6 +196,18 @@ private
     
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+    
+    def updatepickuprecord
+       @request.update_attributes(pickupscondition: @procedures)
+      
+      @checkPH = PickupHistory.where("pickupid = ? and condition=? ",@request.id.to_i,@procedures.to_s)
+      if @checkPH.blank?
+        @newPHistory = PickupHistory.new(condition: @procedures.to_s,pickupid: @request.id.to_i, employeeid: @request.employeeid.to_i)
+        @newPHistory.save
+      else
+         @checkPH.update_all(condition: @procedures.to_s)
+      end
     end
   
 end

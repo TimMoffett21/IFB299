@@ -37,7 +37,12 @@ Rails.application.routes.draw do
   resources :fa_q_main_lists
   resources :fa_q_sub_lists
   resources :contacts
-  resources :pickups
+  resources :pickups do
+    collection do
+      get  :newcustomerpickup
+      post :newcustomerpickup
+    end
+  end
   resources :testimonies
   resources :quotes do
     collection do
@@ -62,7 +67,15 @@ Rails.application.routes.draw do
   
   resources :users
   
-  resources :news
+  
+  
+  resources :news do
+    collection do
+      get :newsdetail
+    end
+  end
+    
+
   
   
   
