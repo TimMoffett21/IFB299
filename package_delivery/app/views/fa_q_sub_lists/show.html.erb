@@ -15,13 +15,16 @@
       <section class="faq_section">
         <label>Question Title:</label><br>
         <p><%=@sublist.SubFaqQuestion %><p><br>
-        <label>Question Answer:</label><br>
-        <textarea disabled class="faq_textarea"><%=@sublist.SubFaqAnswer%></textarea>
+        <label>Question Answer:</label><br><br>
+        <textarea id="textarea" readonly><%=@sublist.SubFaqAnswer%></textarea>
         
-        <%= link_to "Edit", edit_fa_q_sub_list_path(@sublist)%>
+        <%= link_to "Edit", edit_fa_q_sub_list_path(@sublist), :id => "manager-faq-edit-btn",class: "btn"%>
         <%= button_to 'Delete', fa_q_sub_list_path(@sublist),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+              :id => "manager-faq-delete-btn",
+              class: "btn btn-primary",
+              data: { confirm: "Are you sure you want to delete selected FaQ?"  } %>
+        
        
       </section>
       <!----Navigation Bar---------------------------------->

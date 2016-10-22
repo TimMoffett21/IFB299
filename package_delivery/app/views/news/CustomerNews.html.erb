@@ -10,8 +10,8 @@
                   <h4><%=n.title%></h4>
               </div>
               <div class="panel-body">
-                  <%=n.updated_at%>
-                  <p><%=n.content%></p>
+                  <p><u><%= n.updated_at.strftime("Posted Date: %d/%m/%Y , %I:%M%p")%></u></p><br>
+                  <p style="white-space: pre-line;"><%=n.content%></p>
               </div>
             </div>
         <%end%>

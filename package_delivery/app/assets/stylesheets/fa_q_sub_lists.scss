@@ -23,3 +23,84 @@
   width:330px;
   color: white;
 }
+
+#textarea{
+  border: 3px solid #1ab2ff;
+  border-radius: 5px;
+  height : 250px;
+  overflow:scroll;
+  
+}
+
+#manager-faq-delete-btn{
+  border: 1px solid black;
+  border-radius: 5px;
+  width : 30%;
+  background-color: #00aaff;
+  right : 31%;
+  position: absolute;
+  float:right;
+  bottom: 6%;
+  
+  
+}
+#manager-faq-edit-btn{
+  border: 1px solid black;
+  border-radius: 5px;
+  width : 30%;
+  color: white;
+  background-color: #00aaff;
+  position: absolute;
+  float:left;
+  bottom: 6%;
+}
+
+#manager-faq-update-btn{
+  border: 1px solid black;
+  border-radius: 5px;
+  width : 30%;
+  color: white;
+  background-color: #00aaff;
+  left : 15%;
+  position: absolute;
+  bottom : 3%;
+  
+}
+
+#manager-faq-back-btn{
+  border: 1px solid black;
+  border-radius: 5px;
+  width : 30%;
+  color: white;
+  background-color: #00aaff;
+  right : 15%;
+  position: absolute;
+  bottom : 3%;
+}
+
+#manager-faq-item-btn{
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  background-color: #00aaff;
+  width: 100%;
+}
+
+#manager-faq-item-add{
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  background-color: #00aaff;
+  width: 100%;
+}
+
+.faq-center{
+  margin: auto;
+  width : 70%;
+  
+}
+
+.text_area{
+  height: 50px;
+}
+

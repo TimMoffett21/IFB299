@@ -12,7 +12,7 @@
     .faq_nav{
         
         float: right;
-        width:26.4%;
+        width:29.5%;
         height:480px;
         margin: 0;
         border-style:solid;
@@ -22,9 +22,18 @@
       float:left;
       padding: 1em;
       width:70%;
-      height:450px;
+      height:480px;
       overflow: hidden;
       background-color:white;
       border-style:solid;
       
     }
+    
+textarea{  
+  /* box-sizing: padding-box; */
+  overflow:hidden;
+  /* demo only: */
+  padding:10px;
+  font-size:14px;
+
+}

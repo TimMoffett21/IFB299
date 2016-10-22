@@ -17,12 +17,14 @@
       </div>
   
       <% if @user.identity == "manager" %>
-        <%= link_to "Manage Faq",   fa_q_sub_lists_path %></br></br>
-        <%= link_to "Manage News", news_path%></br></br>
-        <%= link_to "Manage Quote",  controller: 'pickups' %></br></br>
-        <%= link_to "Register New Employee", signup_path %></br></br>
-        <%= link_to "Show All Users", all_user_path %></br></br>
         
+        <div id="manager_optionlist">
+        <li><%= link_to "Manage Faq",   fa_q_sub_lists_path %></li>
+        <li><%= link_to "Manage News", news_path%></li>
+        <li><%= link_to "Manage Quote",  controller: 'pickups' %></li>
+        <li><%= link_to "Register New Employee", signup_path %></li>
+        <li><%= link_to "Show All Users", all_user_path %></li>
+        </div>
         <div id="pickup available">
         <h3>Pending Request</h3>
           <%if @pending_pickup.count ==0%>

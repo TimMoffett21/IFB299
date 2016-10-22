@@ -1,28 +1,23 @@
+<div class="faq-center">
 <h1>New FaQ</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@sublist) do |f| %>
-    <%= render 'shared/faq_error_messages' %>
+<%= form_for(@sublist) do |f| %>
+  <%= render 'shared/faq_error_messages' %>
       
        
-        <%= f.label :FaqMainLstId,'Faq Main Category'%>
+        <%= f.label :FaqMainLstId,'Faq Main Category :'%>
+        <br>
         <%= f.select :FaqMainLstId, [['General', 1],['Personnel',2],['Business',3]], class: 'form-control'%>
-      <br>
-        <%= f.label :SubFaqQuestion%>
-        <%= f.text_field:SubFaqQuestion,class: 'form-control'%>
-      
-        <%= f.label :SubFaqAnswer%>
-        <%= f.text_area:SubFaqAnswer,class: 'form-control'%>
       <br><br>
-        <%= f.submit "Confirm new FaQ",class: "btn btn-primary"%>
-     
-    <%end%>
-     <br><br><br><br><br>
-     <%= render 'form' %>
-    <%= link_to 'Back', fa_q_sub_lists_path, class:"btn  btn-primary",style:"color:white"%>
-
-  </div>
- 
+        <%= f.label :SubFaqQuestion,'FaQ Title :'%>
+        <br>
+        <%= f.text_field:SubFaqQuestion,class: 'form-control'%>
+      <br><br>
+        <%= f.label :SubFaqAnswer, "FaQ Answers :"%>
+        <br>
+        <%= f.text_area:SubFaqAnswer,class: "form-control",:id=> "textarea",:rows => 10 %>
+      <br><br>
+        <%= f.submit "Confirm new FaQ",class: "btn btn-primary",:id => "manager-faq-update-btn"%>
+<%end%>
+<%= link_to 'Back', fa_q_sub_lists_path,:id => "manager-faq-back-btn",class:"btn"%>
 </div>
-

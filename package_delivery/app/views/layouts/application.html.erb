@@ -58,9 +58,12 @@
                 <li><%= link_to 'Terms and Condition', termsandcondition_path %></li>
               </ul>
             </li>
-            
           </ul>
+           <% if logged_in? %>
+              <p id="Welcome-Message">Welcome , <%=current_user.name%></p>
+            <%end%>
         </div>
+        
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->
