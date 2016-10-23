@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20161016110602) do
     t.text     "instructions"
     t.date     "pickup_date"
     t.time     "pickup_time"
+    
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "employeeid",          default: 0,         null: false

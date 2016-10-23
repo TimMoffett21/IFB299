@@ -24,8 +24,7 @@ class UsersController < ApplicationController
     
   end
   
-  def show_employee
-  end
+ 
   
   def index
     @users = User.paginate(page: params[:page])
