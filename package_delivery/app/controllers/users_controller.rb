@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   
   
-  
   def show
     @user = User.find(params[:id])
     @loginuser = params[:id]
@@ -39,16 +38,18 @@ class UsersController < ApplicationController
 
   # Create
   def create
+    
     @user = User.new(user_params)
+    
+    
     if @user.identity == "driver"
       employeestatus = EmployeeWorkingStatus.new(employeeid: @user.id,status: "Available")
       employeestatus.save
     end
 
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to On The Spot Couriers"
-      redirect_to @user
+      flash[:success] = "New employee added."
+      redirect_to current_user
     else
       render 'new'
     end

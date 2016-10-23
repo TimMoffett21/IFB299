@@ -15,6 +15,7 @@ class PickupsController < ApplicationController
   # GET /pickups/new
   def new
     @pickup = Pickup.new
+    @cid = User.find(params[:customer])
   end
   
   def newcustomerpickup
@@ -76,7 +77,7 @@ class PickupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pickup_params
-      params.require(:pickup).permit(:name, :company, :address, :city, :state, :zip, :country, :number, :shipment_amount, :weight, :location_type, :package_location, :instructions, :pickup_date, :pickup_time, :customer_id)
+      params.require(:pickup).permit(:name, :company, :address, :city, :state, :zip, :country, :number, :shipment_amount, :weight, :location_type, :package_location, :instructions, :pickup_date, :pickup_time, :customer_id,:delivery_type,:request_id,:totle_cost,:delivery_datetime)
     end
     
 end

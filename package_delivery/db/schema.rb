@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016110602) do
+ActiveRecord::Schema.define(version: 20161023110914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20161016110602) do
     t.string   "state"
     t.integer  "zip"
     t.string   "country"
-    t.integer  "number"
+    t.string   "number"
     t.integer  "shipment_amount"
     t.decimal  "weight"
     t.string   "location_type"
@@ -68,13 +68,16 @@ ActiveRecord::Schema.define(version: 20161016110602) do
     t.text     "instructions"
     t.date     "pickup_date"
     t.time     "pickup_time"
-    
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "employeeid",          default: 0,         null: false
     t.string   "pickupscondition",    default: "Pending", null: false
     t.integer  "deliveryemployee_id", default: 0,         null: false
     t.integer  "customer_id",         default: 0
+    t.datetime "delivery_datetime"
+    t.string   "delivery_type"
+    t.string   "request_id"
+    t.decimal  "totle_cost"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -88,10 +91,6 @@ ActiveRecord::Schema.define(version: 20161016110602) do
     t.text     "wcategory"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-  end
-
-  create_table "test", id: false, force: :cascade do |t|
-    t.text "test"
   end
 
   create_table "testimonies", force: :cascade do |t|

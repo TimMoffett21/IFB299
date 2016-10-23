@@ -1,12 +1,5 @@
 
-<div id="manager_optionlist">
-  <%= link_to "Manage Faq",   fa_q_sub_lists_path,class:"btn",:id => "manager-option-button" %>
-  <%= link_to "Manage News", news_path,class:"btn",:id => "manager-option-button"%>        
-  <%= link_to "Manage Quote",  pickups_path,class:"btn",:id => "manager-option-button" %>
-  <%= link_to "Add Employee", signup_path,class:"btn",:id => "manager-option-button" %>
-  <%= link_to "Manage Users", all_user_path,class:"btn",:id => "manager-option-button" %>
-  </br></br></br>
-</div>
+<%= render 'shared/manager_selection' %>
 
 <div id="request-management">
 <div id="pickup-available">

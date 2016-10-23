@@ -63,7 +63,7 @@
             <%end%>  
           <%end%>
       <% elsif @user.identity == "customer" %> 
-        <%= link_to 'New Pickup', newcustomerpickup_pickups_path(customer: @user)%><br><br>
+        <%= link_to 'New Pickup', new_pickup_path(customer: @user)%><br><br>
         
         <h3>PickupHistory</h3>
         <% @customerpickup.each do |p|%>
