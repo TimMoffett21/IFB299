@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003091437) do
+
+ActiveRecord::Schema.define(version: 20161023110914) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employee_working_statuses", force: :cascade do |t|
+    t.integer  "employeeid"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fa_q_main_lists", force: :cascade do |t|
     t.string   "FaqMainName"
@@ -37,6 +46,14 @@ ActiveRecord::Schema.define(version: 20161003091437) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pickup_histories", force: :cascade do |t|
+    t.string   "condition"
+    t.integer  "pickupid"
+    t.integer  "employeeid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pickups", force: :cascade do |t|
     t.string   "name"
     t.string   "company"
@@ -45,7 +62,7 @@ ActiveRecord::Schema.define(version: 20161003091437) do
     t.string   "state"
     t.integer  "zip"
     t.string   "country"
-    t.integer  "number"
+    t.string   "number"
     t.integer  "shipment_amount"
     t.decimal  "weight"
     t.string   "location_type"
@@ -53,8 +70,16 @@ ActiveRecord::Schema.define(version: 20161003091437) do
     t.text     "instructions"
     t.date     "pickup_date"
     t.time     "pickup_time"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "employeeid",          default: 0,         null: false
+    t.string   "pickupscondition",    default: "Pending", null: false
+    t.integer  "deliveryemployee_id", default: 0,         null: false
+    t.integer  "customer_id",         default: 0
+    t.datetime "delivery_datetime"
+    t.string   "delivery_type"
+    t.string   "request_id"
+    t.decimal  "totle_cost"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -70,10 +95,6 @@ ActiveRecord::Schema.define(version: 20161003091437) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "test", id: false, force: :cascade do |t|
-    t.text "name", null: false
-  end
-
   create_table "testimonies", force: :cascade do |t|
     t.string   "name"
     t.text     "text"
@@ -86,9 +107,11 @@ ActiveRecord::Schema.define(version: 20161003091437) do
     t.string   "name"
     t.string   "email"
     t.string   "identity"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
+    t.string   "remember_digest"
+    t.boolean  "admin",           default: false
   end
 
 end

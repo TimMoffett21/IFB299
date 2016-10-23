@@ -1,43 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @pickup.name %>
+  <strong>Request Id:</strong>
+  <%= @pickup.request_id %>
 </p>
-
+</br>
+<h3>Shipment Info</h3>
 <p>
-  <strong>Company:</strong>
-  <%= @pickup.company %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @pickup.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @pickup.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @pickup.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @pickup.zip %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @pickup.country %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @pickup.number %>
+  <strong>Pickup Customer id:</strong>
+  <%= @pickup.customer_id %>
 </p>
 
 <p>
@@ -49,20 +20,27 @@
   <strong>Weight:</strong>
   <%= @pickup.weight %>
 </p>
-
 <p>
-  <strong>Location type:</strong>
-  <%= @pickup.location_type %>
+  <strong>Shipment Cost:</strong>
+  <%= @pickup.totle_cost %>
 </p>
 
+
+</br>
+<h3>Pickup Info</h3>
 <p>
-  <strong>Package location:</strong>
+  <strong>Pickup location:</strong>
   <%= @pickup.package_location %>
 </p>
 
 <p>
-  <strong>Instructions:</strong>
-  <%= @pickup.instructions %>
+  <strong>Pickup type:</strong>
+  <%= @pickup.location_type %>
+</p>
+
+<p>
+  <strong>Delivery type:</strong>
+  <%= @pickup.delivery_type %>
 </p>
 
 <p>
@@ -75,5 +53,78 @@
   <%= @pickup.pickup_time %>
 </p>
 
+</br>
+
+<h3>Receiver Info</h3>
+<p>
+  <strong>Receiver Name:</strong>
+  <%= @pickup.name %>
+</p>
+<p>
+  <strong>Receiver Phone No:</strong>
+  <%= @pickup.number %>
+</p>
+<p>
+  <strong>Delivery Type:</strong>
+  <%= @pickup.delivery_type %>
+</p>
+<p>
+  <strong>Receiver Company:</strong>
+  <%= @pickup.company %>
+</p>
+
+<p>
+  <strong>Receiver Address:</strong>
+  <%= @pickup.address %>
+</p>
+
+<p>
+  <strong>Receiver City:</strong>
+  <%= @pickup.city %>
+</p>
+
+<p>
+  <strong>Receiver State:</strong>
+  <%= @pickup.state %>
+</p>
+
+<p>
+  <strong>Receiver Zip:</strong>
+  <%= @pickup.zip %>
+</p>
+
+<p>
+  <strong>Receiver Country:</strong>
+  <%= @pickup.country %>
+</p>
+
+
+
+
+
+
+
+</br>
+<h3>Others</h3>
+<p>
+  <strong>Instructions:</strong>
+  <%= @pickup.instructions %>
+</p>
+
+
+
+<p>
+  <strong>Pickup Condition:</strong>
+  <%= @pickup.pickupscondition %>
+</p>
+
+
+
+
+
+
+
+
+
 <%= link_to 'Edit', edit_pickup_path(@pickup) %> |
-<%= link_to 'Back', pickups_path %>
+<%= link_to 'Back', current_user %>

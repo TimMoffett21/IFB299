@@ -2,6 +2,19 @@
 <html lang="en">
 <head>
    <%= render 'shared/accordion_function' %>
+
+<script>
+  $( function() {
+    $('#customerfaq').on('keydown', function(e){
+      var that = $(this);
+      if (that.scrollTop()) {
+          $(this).width(function(i,h){
+            return h + 20;
+          });
+      }
+    });
+  });
+</script>
 </head>
 
 <body>
@@ -16,7 +29,7 @@
         <div id="sub_accordion<%=@increment%>">
             <%@faqsublist.where(:FaqMainLstId => mains.id).each do |subs|%>
               <h4><%=subs.SubFaqQuestion%></h4>
-                <div><p><%=subs.SubFaqAnswer%></p></div>
+                <div><p style="white-space: pre-line;"><%=subs.SubFaqAnswer%></p></div>
             <%end%>
         </div>
       </div>

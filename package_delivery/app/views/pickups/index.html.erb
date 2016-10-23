@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <h1 style= "text-align:center;">Listing Pickups</h1>
 
 <table>
@@ -52,6 +53,10 @@
         <td><%= pickup.package_location %></td>
       </tr>
       <tr>
+        <th>Package Condition</th>
+        <td><%= pickup.pickupscondition %></td>
+      </tr>
+      <tr>
        
       </tr>
     <% end %>
@@ -60,5 +65,5 @@
 
 <br>
 
-<%= link_to 'New Pickup', new_pickup_path %>
+<%= link_to 'New Pickup', new_pickup_path %><br><br>
 <%= link_to 'Home', root_path %>

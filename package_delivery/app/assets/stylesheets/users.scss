@@ -1,0 +1,62 @@
+/* CSS Design for manager option list located at top of management*/
+#manager_optionlist{
+  width: 100%;
+}
+
+#manager-option-button{
+  background-color: #00aaff; /* Light Blue */
+  border: 1px solid green;
+  color: white;
+  width:20%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+#manager-option-button:hover {
+    background-color: #3e8e41;
+}
+
+
+
+
+
+
+
+/* CSS Design for manager customer request managerment*/
+#request-management{
+  vertical-align: top;
+  width: 100%;
+}
+
+
+#pickup-available{
+  float: left;
+  width: 50%;
+}
+
+#employee-pickup{
+  float: left;
+  width: 50%;
+}
+
+#header{
+  margin-left: 30%;
+}
+
+#container{
+  border: 2px solid black;
+  border-radius: 5px;
+  width : 80%;
+  margin-left: 10%;
+}
+
+#inner-container{
+  width : 80%;
+  margin-left: 10%;
+}
+
+

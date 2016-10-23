@@ -1,21 +1,90 @@
-<h1>Manager Login</h1>
-  <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-        <%= @user.email%>
-        <%= @user.identity%>
-      </h1>
+<!DOCTYPE html>
+<html>  
+  
+  
+  <div id="portal-identity">
+    <%= gravatar_for @user %><br>
+    Name: <%= @user.name %><br>
+    Email: <%= @user.email%><br>
+    <% if @user.identity == "manager" || @user.identity == "driver" %> 
+      Position: <%= @user.identity%><br>
+    <% elsif @user.identity == "customer" %>
+      You are our respectful customer!
+    <% end %>
+    </br></br>
+  </div>
+  
+      <% if @user.identity == "manager" %>
+          <%= render 'portal_manager' %>
+      <% elsif @user.identity == "driver" %>
+          <h3>Assigned Pickup</h3>
+          <% @allpickup.each do |pp|%>
+            <%if pp.employeeid == @user.id and pp.pickupscondition== "Accepted"\
+              or pp.pickupscondition== "Pickup in Progress" or \
+              pp.pickupscondition== "Pickup Completed"%>
+                <p>
+                <%=label_tag(:name,"Request Name : " + pp.name)%>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <%=label_tag(:pickup_time,"Request Name : " + pp.pickup_time.to_s)%>
+                </p>
+                <%if pp.pickupscondition != "Accepted"%>
+                  <%= link_to 'Roll Back', updatepickupstatusback_path(selectedrequest: pp),:name =>"Confirm"%>
+                <%else%>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%end%>
+                <%=label_tag(:pickupscondition,"Pickup Condition : " + pp.pickupscondition)%>
+                <%= link_to 'Proceed to Next', updatepickupstatusnext_path(selectedrequest: pp),:name =>"Confirm"%>
+            <%end%>
+          <%end%>
+          <h3>Assigned Delivery</h3>
+          <% @allpickup.each do |pp|%>
+            <%if pp.deliveryemployee_id == @user.id%> 
+              <%if pp.pickupscondition== "Package in Store"\
+                or pp.pickupscondition=="Delivery in Progress"\
+                or pp.pickupscondition=="Delivery Completed"%>
+                  <p>
+                    <%=label_tag(:name,"Request Name : " + pp.name)%>
+                  </p>
+                    <%if pp.pickupscondition != "Package in Store"%>
+                      <%= link_to 'Roll Back', updatedeliverystatusback_path(selecteddrequest: pp),:name =>"Confirm"%>
+                    <%else%>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%end%>
+                    <%=label_tag(:pickupscondition,"Delivery Condition : " + pp.pickupscondition)%>
+                    <%= link_to 'Proceed to Next', updatedeliverystatusnext_path(selecteddrequest: pp),:name =>"Confirm"%>
+              <%else%>
+                 <%if pp.pickupscondition!= "Request Completed"%>
+                 <p>
+                    <%=label_tag(:name,"Request Name : " + pp.name)%>
+                  </p>
+                    <%=label_tag(:pickupscondition,"Pickup Not Completed : " + pp.pickupscondition)%>
+                <%end%>
+              <%end%>
+            <%end%>  
+          <%end%>
+      <% elsif @user.identity == "customer" %> 
+        <%= link_to 'New Pickup', new_pickup_path(customer: @user)%><br><br>
+        
+        <h3>PickupHistory</h3>
+        <% @customerpickup.each do |p|%>
+          <strong>Pickup Package :</strong><%=p.name%> </br></br>
+          <strong>Time</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong></br>
+          <% @customerpickuphistory.each do |ph|%>
+            <%if ph.pickupid == p.id%>
+              <%=ph.updated_at%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ph.condition%></br>
+            <%end%>
+          <%end%>
+        <%end%>
+      <% end %>
     </section>
-    <aside class="col-md-4">
-    <section>
-      <%= link_to "Manage Faq",   fa_q_sub_lists_path %></br></br>
-       <%= link_to "Manage News", news_path%></br></br>
-      <%= link_to "Manage Quote",  controller: 'pickups' %></br></br>
-      <%= link_to "Register New Employee", signup_path %></br></br>
-     
-    </section>
-  </aside>
+    <!--/aside-->
+  </div>
 </div>
+
+ 
+
+</section>
+  
+</html>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  condition: MyString
+  pickupid: 1
+  employeeid: 1
+
+two:
+  condition: MyString
+  pickupid: 1
+  employeeid: 1

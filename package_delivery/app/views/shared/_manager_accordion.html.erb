@@ -1,11 +1,12 @@
-<%= link_to 'Add New',new_fa_q_sub_list_path , :class =>'btn-faqadd btn btn btn-primary',style:"color:white"%>
+<%= link_to 'Add New',new_fa_q_sub_list_path , :class =>'btn', :id =>"manager-faq-item-add"%>
+<br><br>
 <div id="main_accordion"</div>
   <%@faqmainlist.each do |mains|%>
     <%@increment+=1%>
     <h3><%=mains.FaqMainName%></h3>
     <div>
       <%@faqsublist.where(:FaqMainLstId => mains.id).each do |subs|%>
-          <p><%= link_to subs.SubFaqQuestion, subs%></p>
+          <p><%= link_to subs.SubFaqQuestion, subs, :id => "manager-faq-item-btn",class: "btn"%></p>
       <%end%>
     </div>
     

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
   get 'onthespotnews', to:'news#CustomerNews' 
+  
+  get 'customeregistration', to:'news#cus_reg'
 
 
   get 'sessions/new'
@@ -14,16 +16,33 @@ Rails.application.routes.draw do
   get '/termsandcondition', to: "home#index"
   get  '/signup',  to: 'users#new'
   get  '/employeelogin',  to: 'users#show_employee'
+  get  '/customerlogin', to: 'users#show_customer'
+  get  '/edit_user' , to: 'users#edit'
+  get  '/all_user', to: 'users#index'
+  get  '/edit' , to: 'users#edit'
+  
   post '/signup',  to: 'users#create'
   
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
+  
+  
+  
+ 
+  
+  
+  
   resources :fa_q_main_lists
   resources :fa_q_sub_lists
   resources :contacts
-  resources :pickups
+  resources :pickups do
+    collection do
+      get  :newcustomerpickup
+      post :newcustomerpickup
+    end
+  end
   resources :testimonies
   resources :quotes do
     collection do
@@ -31,9 +50,32 @@ Rails.application.routes.draw do
       get :show
     end
   end
+  get   '/assignjob', to:'users#assignjob'
+  post '/assignjob', to:'users#assignjob'
+  
+  get   '/updatepickupstatusnext', to:'users#updatepickupstatusnext'
+  post '/updatepickupstatusnext', to:'users#updatepickupstatusnext'
+  
+  get   '/updatepickupstatusback', to:'users#updatepickupstatusback'
+  post '/updatepickupstatusback', to:'users#updatepickupstatusback'
+  
+   get   '/updatedeliverystatusnext', to:'users#updatedeliverystatusnext'
+  post '/updatedeliverystatusnext', to:'users#updatedeliverystatusnext'
+  
+  get   '/updatedeliverystatusback', to:'users#updatedeliverystatusback'
+  post '/updatedeliverystatusback', to:'users#updatedeliverystatusback'
+  
   resources :users
   
-  resources :news
+  
+  
+  resources :news do
+    collection do
+      get :newsdetail
+    end
+  end
+    
+
   
   
   

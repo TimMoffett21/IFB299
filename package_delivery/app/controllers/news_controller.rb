@@ -1,5 +1,8 @@
 class NewsController < ApplicationController
   
+  def newsdetail
+  end
+  
   
   def CustomerNews
     @news= News.all

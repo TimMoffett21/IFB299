@@ -15,6 +15,12 @@ class PickupsController < ApplicationController
   # GET /pickups/new
   def new
     @pickup = Pickup.new
+    @cid = User.find(params[:customer])
+  end
+  
+  def newcustomerpickup
+     @pickup = Pickup.new
+     @cid = User.find(params[:customer])
   end
 
   # GET /pickups/1/edit
@@ -24,10 +30,12 @@ class PickupsController < ApplicationController
   # POST /pickups
   # POST /pickups.json
   def create
-    @pickup = Pickup.new(picksudos)
-
+    @pickup = Pickup.new(pickup_params)
     respond_to do |format|
       if @pickup.save
+        @pickup_history = PickupHistory.new(condition: "Pending",employeeid: 0,pickupid: @pickup.id.to_i)
+        @pickup_history.save
+      
         format.html { redirect_to @pickup, notice: 'Pickup was successfully created.' }
         format.json { render :show, status: :created, location: @pickup }
       else
@@ -69,6 +77,7 @@ class PickupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pickup_params
-      params.require(:pickup).permit(:name, :company, :address, :city, :state, :zip, :country, :number, :shipment_amount, :weight, :location_type, :package_location, :instructions, :pickup_date, :pickup_time)
+      params.require(:pickup).permit(:name, :company, :address, :city, :state, :zip, :country, :number, :shipment_amount, :weight, :location_type, :package_location, :instructions, :pickup_date, :pickup_time, :customer_id,:delivery_type,:request_id,:totle_cost,:delivery_datetime)
     end
+    
 end

@@ -1,4 +1,4 @@
-<h1>On The Spot New Edit</h1>
+<h1>On The Spot News Edit</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@new) do |f| %>
@@ -8,14 +8,13 @@
         <%= f.text_field:title,class: 'form-control'%>
       
         <%= f.label :content%>
-        <%= f.text_area:content,class: 'form-control'%>
+        <%= f.text_area:content,class: 'form-control',:id=>"textarea",:rows => 10%>
       <br><br>
-        <%= f.submit "Confirm new FaQ",class: "btn btn-primary"%>
+        <%= f.submit "Confirm new FaQ",class: "btn",:id => "manager-faq-update-btn"%>
      
     <%end%>
-     <br><br><br><br><br>
-     <%= render 'form' %>
-    <%= link_to 'Back', news_path, class:"btn  btn-primary",style:"color:white"%>
+     <br>
+    <%= link_to 'Back', news_path, class:"btn",:id => "manager-faq-back-btn"%>
 
   </div>
  
