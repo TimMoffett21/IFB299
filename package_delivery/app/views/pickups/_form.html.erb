@@ -15,7 +15,7 @@
   <h3>Customer Information</h3>
   <div id="pickup-cus-info">
     <%= label_tag('customer_name', 'Name :')%>
-    <%=@cid.name%></br>
+    null</br>
     
     <%= label_tag('customer_contactno', 'Contact No. :')%>
     null</br>
@@ -107,7 +107,7 @@
     </div>
     <div class="field">
       <%= f.label :number,'Receiver Mobile Number :'  %><br>
-      <%= f.text_field :number %>
+      <%= f.tel :number %>
     </div>
     
   </div>
