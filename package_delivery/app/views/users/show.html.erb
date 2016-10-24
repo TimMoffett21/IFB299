@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>  
   
-  
-  <div id="portal-identity">
-    <%= gravatar_for @user %><br>
-    Name: <%= @user.name %><br>
-    Email: <%= @user.email%><br>
-    <% if @user.identity == "manager" || @user.identity == "driver" %> 
-      Position: <%= @user.identity%><br>
-    <% elsif @user.identity == "customer" %>
-      You are our respectful customer!
-    <% end %>
-    </br></br>
-  </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <aside class="col-md-4">
+            <%= gravatar_for @user %><br>
+              Name: <%= @user.name %><br>
+              Email: <%= @user.email%><br>
+              <% if @user.identity == "manager" || @user.identity == "driver" %> 
+                Position: <%= @user.identity%><br>
+              <% elsif @user.identity == "individual" || @user.identity == "business" %>
+                You are our respectful <%= @user.identity %> customer! <br>
+              <% end %>
+              <% if @user.identity == "business" %>
+                Your Company: <%= @user.company %> <br>
+              <% end %>
+              <% if @user.identity == "individual" || @user.identity == "business" %>
+                Address:  <%= @user.address %> <br>
+                Phone:    <%= @user.phone %> <br>
+              <% end %>
+          </aside>
+        </div>
+      </div>
   
       <% if @user.identity == "manager" %>
           <%= render 'portal_manager' %>
@@ -62,8 +71,8 @@
               <%end%>
             <%end%>  
           <%end%>
-      <% elsif @user.identity == "customer" %> 
-        <%= link_to 'New Pickup', new_pickup_path(customer: @user)%><br><br>
+      <% elsif @user.identity == "individual" || @user.identity == "business" %>
+        <%= link_to 'New Pickup', newcustomerpickup_pickups_path(customer: @user)%><br><br>
         
         <h3>PickupHistory</h3>
         <% @customerpickup.each do |p|%>

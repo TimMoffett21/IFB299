@@ -17,6 +17,18 @@
       
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+            
+      <%= f.label :identity %>
+      <%= f.select :identity, ['business', 'individual'], class: 'form-control'%>
+ 
+      <%= f.label :company %>
+      <%= f.text_field :company, class: 'form-control' %>
+  
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+      
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: 'form-control' %>
       <br><br>
 
       <%= f.submit "Register new customer", class: "btn btn-primary" %>

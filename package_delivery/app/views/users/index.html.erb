@@ -1,18 +1,53 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
 
-
-
+<h1>All Employee</h1><br>
 <ul class="users">
   <%@users.each do |user| %>
+    <% if user.identity == "driver" %>
     <li>
       <%= gravatar_for user, size: 50 %>
-      <%= link_to user.name, user %>
-      <% if current_user.admin? && !current_user?(user) %>
-        | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+      Name: <%= link_to user.name, user %><br>
+      Email: <%= user.email %><br><br>
+      <% if (current_user.admin? && !current_user?(user)) %>
+        Manage Action: <b><%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %></b>
       <% end %>
     </li>
+    <% end %>
   <% end %>
 </ul>
-
+<br><hr><br>
+<h1>All Customer - Individual</h1><br>
+<ul class="users">
+  <%@users.each do |user| %>
+    <% if user.identity == "individual" %>
+    <li>
+      <%= gravatar_for user, size: 50 %>
+      Name: <%= link_to user.name, user %><br>
+      Email: <%= user.email %><br><br>
+      <% if (current_user.admin? && !current_user?(user)) %>
+         Manage Action: <b><%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %></b>
+      <% end %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+<br><hr><br>
+<h1>All Customer - Business</h1><br>
+<ul class="users">
+  <%@users.each do |user| %>
+    <% if user.identity == "business" %>
+    <li>
+      <%= gravatar_for user, size: 50 %>
+      Name: <%= link_to user.name, user %><br>
+      Email: <%= user.email %><br>
+      Company: <%= user.company %><br>
+      <% if (current_user.admin? && !current_user?(user)) %>
+        Manage Action: <b><%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %></b>
+      <% end %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>

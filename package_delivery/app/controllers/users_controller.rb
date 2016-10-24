@@ -48,8 +48,8 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      flash[:success] = "New employee added."
-      redirect_to current_user
+      flash[:success] = "You have registered successfully. Please Login."
+      redirect_to login_url
     else
       render 'new'
     end
@@ -175,7 +175,7 @@ class UsersController < ApplicationController
 private
     def user_params
       params.require(:user).permit(:name, :email,:identity, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :company, :address, :phone)
     end
     
     def employeestatus_params
