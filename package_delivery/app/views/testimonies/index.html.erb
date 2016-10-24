@@ -14,97 +14,79 @@
 
 </style>
 
+<div class="col-md-1"></div>
+<div class="col-md-10">
+        
+    <br/><br/>
+            
+        
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Testimonies</h3>
+	  </div>
+	  <div class="panel-body table-responsive">
+	  	<%= link_to 'Add New Testimony', new_testimony_path %>
+	  	<br/><br/>
+	    <table class="table table-view table-hover">
+	                    <tr>
+	                        <th>Name</th>
+	                        <th>Text</th>
+	                        <th>Rating</th>
+	                        <th>Actions</th>
+	                    </tr>
+	                <tbody>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Testimonies</h3>
-  </div>
-  <div class="panel-body table-responsive">
-  	<%= link_to 'Add New Testimony', new_testimony_path %>
-  	<br/><br/>
-    <table class="table table-view table-hover">
-                    <tr>
-                        <th>Name</th>
-                        <th>Text</th>
-                        <th>Rating</th>
-                        <th>Actions</th>
-                    </tr>
-                <tbody>
+	                <% @testimonies.each do |testimony| %>
+	                    <tr>
+	                        <td><%=testimony.name %></td>
+	                        <td><%= testimony.text %></td>
+	                        <td><%=testimony.rating %></td>
+	                        
+	                        <td class="icons-sep">
 
-                <% @testimonies.each do |testimony| %>
-                    <tr>
-                        <td><%=testimony.name %></td>
-                        <td><%= testimony.text %></td>
-                        <td><%=testimony.rating %></td>
-                        
-                        <td class="icons-sep">
+		                        <%= link_to edit_testimony_path(testimony) do %>
+		                        	<i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>
+			  					<% end %>
 
-	                        <%= link_to edit_testimony_path(testimony) do %>
-	                        	<i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>
-		  					<% end %>
+			  					&nbsp
+			  					
+			  					<%= link_to testimony_path(testimony),
+		              			method: :delete,
+		              			data: { confirm: 'Are you sure?' } do %>	
 
-		  					&nbsp
-		  					
-		  					<%= link_to testimony_path(testimony),
-	              			method: :delete,
-	              			data: { confirm: 'Are you sure?' } do %>	
+		              				<i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
 
-	              				<i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
+		              			<% end %>		
 
-	              			<% end %>		
+	              			</td>
 
-              			</td>
+	                        <!-- <td class="icons-sep">
+	                            <a href="/admin/store/@store.id/show"><i class="fa fa-eye" aria-hidden="true" title="View"></i></a>
+	                            <a href="/admin/store/@store.id/edit"><i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></a>
+	                            <a href="/admin/store/@store.id/delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" aria-hidden="true" title="Delete"></i></a>
+	                        </td> -->
 
-                        <!-- <td class="icons-sep">
-                            <a href="/admin/store/@store.id/show"><i class="fa fa-eye" aria-hidden="true" title="View"></i></a>
-                            <a href="/admin/store/@store.id/edit"><i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></a>
-                            <a href="/admin/store/@store.id/delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" aria-hidden="true" title="Delete"></i></a>
-                        </td> -->
+	                    </tr>
+	                <% end %>
 
-                    </tr>
-                <% end %>
-
-                </tbody>
-            </table>
- 
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <table align = "center">
-
-  <% @testimonies.each do |testimony| %>
-  <div class="testimonyblock">
-	  <tr>
-      <td style= "font-size:120%;text-align:center;"><%= testimony.text %></td>
-	  </tr>
-	   <tr>
-	       <td style = "text-align:center;"><%=testimony.name %></td>
-	   </tr>
-	  <tr>
-	   <td style = "text-align:center;"><%=testimony.rating %></td>   
-	  </tr>
-	  <td style = "text-align:right;"><%= link_to 'Edit', edit_testimony_path(testimony) %></td>
-	  <td style = "text-align:right;"><%= link_to 'Delete', testimony_path(testimony),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-	  
-   
-  <% end %>
-  </div>
-</table>
+	                </tbody>
+	            </table>
+	 
+	  </div>
+	</div>
 
 </div>
-<p style="text-align:right;">
-	<%= link_to 'New Testimony', new_testimony_path %>
-</p> -->
+<div class="col-md-1"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
