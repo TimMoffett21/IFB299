@@ -27,20 +27,24 @@
 
 
 /* CSS Design for manager customer request managerment*/
-#request-management{
+.main-box{
   vertical-align: top;
   width: 100%;
 }
 
 
-#pickup-available{
+.left-box{
   float: left;
-  width: 50%;
+  width: 45%;
+  min-height: 500px;
+  
 }
 
-#employee-pickup{
+.right-box{
   float: left;
-  width: 50%;
+  width: 45%;
+  min-height: 500px;
+  margin-left: 5%;
 }
 
 #header{
@@ -59,4 +63,45 @@
   margin-left: 10%;
 }
 
+.border{
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.outborder{
+  border: 2px solid #00aaff ;
+  border-radius: 5px;
+}
+
+.buttondesign{
+  border: 1px solid #0000FF;
+  border-radius: 5px;
+  color: rgb(255,255,255);
+  background-color: #00aaff;
+  height:50px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.buttondesign:hover{
+  background-color: #0000FF;
+  color: rgb(255,255,255);
+}
+.center-text{
+  margin-left:10%;
+  font-size: 80%;
+}
+.selection-border{
+  width:90%;
+  margin-left:5%;
+}
+
+#contact-no{
+  
+  float:right;
+}
+
+.table{
+  table-layout:initial;
+}
 

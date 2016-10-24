@@ -17,51 +17,7 @@
       <% if @user.identity == "manager" %>
           <%= render 'portal_manager' %>
       <% elsif @user.identity == "driver" %>
-          <h3>Assigned Pickup</h3>
-          <% @allpickup.each do |pp|%>
-            <%if pp.employeeid == @user.id and pp.pickupscondition== "Accepted"\
-              or pp.pickupscondition== "Pickup in Progress" or \
-              pp.pickupscondition== "Pickup Completed"%>
-                <p>
-                <%=label_tag(:name,"Request Name : " + pp.name)%>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <%=label_tag(:pickup_time,"Request Name : " + pp.pickup_time.to_s)%>
-                </p>
-                <%if pp.pickupscondition != "Accepted"%>
-                  <%= link_to 'Roll Back', updatepickupstatusback_path(selectedrequest: pp),:name =>"Confirm"%>
-                <%else%>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%end%>
-                <%=label_tag(:pickupscondition,"Pickup Condition : " + pp.pickupscondition)%>
-                <%= link_to 'Proceed to Next', updatepickupstatusnext_path(selectedrequest: pp),:name =>"Confirm"%>
-            <%end%>
-          <%end%>
-          <h3>Assigned Delivery</h3>
-          <% @allpickup.each do |pp|%>
-            <%if pp.deliveryemployee_id == @user.id%> 
-              <%if pp.pickupscondition== "Package in Store"\
-                or pp.pickupscondition=="Delivery in Progress"\
-                or pp.pickupscondition=="Delivery Completed"%>
-                  <p>
-                    <%=label_tag(:name,"Request Name : " + pp.name)%>
-                  </p>
-                    <%if pp.pickupscondition != "Package in Store"%>
-                      <%= link_to 'Roll Back', updatedeliverystatusback_path(selecteddrequest: pp),:name =>"Confirm"%>
-                    <%else%>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <%end%>
-                    <%=label_tag(:pickupscondition,"Delivery Condition : " + pp.pickupscondition)%>
-                    <%= link_to 'Proceed to Next', updatedeliverystatusnext_path(selecteddrequest: pp),:name =>"Confirm"%>
-              <%else%>
-                 <%if pp.pickupscondition!= "Request Completed"%>
-                 <p>
-                    <%=label_tag(:name,"Request Name : " + pp.name)%>
-                  </p>
-                    <%=label_tag(:pickupscondition,"Pickup Not Completed : " + pp.pickupscondition)%>
-                <%end%>
-              <%end%>
-            <%end%>  
-          <%end%>
+          <%= render 'portal_driver' %>
       <% elsif @user.identity == "customer" %> 
         <%= link_to 'New Pickup', new_pickup_path(customer: @user)%><br><br>
         

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   
     @customerpickup = Pickup.where("customer_id =?", @user.id.to_i)
     @customerpickuphistory = PickupHistory.all
+    @allcustomer = User.where(:identity => "customer")
     
   end
   
