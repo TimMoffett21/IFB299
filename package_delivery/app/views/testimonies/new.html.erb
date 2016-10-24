@@ -1,27 +1,52 @@
 
-<h1>New Testimony</h1>
-<%= form_for(@testimony) do |f| %>
 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text, size: "40x10"%>
-  </p>
+<style type="text/css">
   
-   <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name%>
-  </p>
-  
-  <p>
-    <%= f.label :rating %><br>
-    <%= f.text_field :rating%>
-  </p>
+  .panel > .panel-heading
+  {
+      background-image: none;
+      background-color: gray;
+      color: white;
+  }
 
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+</style>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Create Testimony</h3>
+  </div>
+  <div class="panel-body clearfix">
+      <%= link_to '<<Back to Listing', testimonies_path %>
+      <br/><br/>
+
+      <%= form_for(@testimony) do |f| %>
+
+
+        <div class="col-md-10">  
+        
+            <div class="form-group">
+              <%= f.label :name, class: "control-label" %><br>
+              <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+            </div>  
+        
+            <div class="form-group">
+              <%= f.label :rating, class: "control-label" %><br>
+              <%= f.text_field :rating, class: "form-control", placeholder: "Rating" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :text, class: "control-label" %><br>
+              <%= f.text_area :text, size: "40x10", class: "form-control", placeholder: "Text" %>
+            </div>
+        
+            <%= f.submit class: "btn btn-success" %>
+        </div>
+      
+      <% end %>
+  </div>
+
+</div>
 
 <%= render 'form' %>
-<%= link_to 'Back', testimonies_path %>
+
+
