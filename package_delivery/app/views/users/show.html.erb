@@ -16,7 +16,7 @@
   
       <% if @user.identity == "manager" %>
           <%= render 'portal_manager' %>
-      <% elsif @user.identity == "driver" %>
+      <% elsif @user.identity == "driver" or @user.identity == "Absence" %>
           <%= render 'portal_driver' %>
       <% elsif @user.identity == "customer" %> 
         <%= link_to 'New Pickup', new_pickup_path(customer: @user)%><br><br>

@@ -1,3 +1,11 @@
+<div id="employee-absence">
+    <%if current_user.identity == "driver"%>
+        <%= link_to "Report Absence",employeeabsence_path, class:"btn abbutton"%>
+    <%else%>
+       <%= link_to "Back to Work",employeeabsence_path, class:"btn abbutton"%>
+    <%end%>
+</div>
+</br></br>
 <div class="main-box">
     <div class="left-box outborder">
         <h3 id="header">Assigned Pickup</h3>
@@ -11,9 +19,8 @@
                     <div id="contact-no">
                         <%=label_tag(:name,"Contact No: "  )%>
                         <%  @allcustomer.each do |c|%>
-                            <%if pp.customer_id== c%>
-                                
-                                <%=c.name%>
+                            <%if pp.customer_id== c.id%>
+                                <%=c.email%>
                             <%end%>
                         <%end%>
                     </div>
@@ -68,35 +75,64 @@
           <h3 id="header">Assigned Delivery</h3>
           </br></br>
           <% @allpickup.each do |pp|%>
-            
                 <%if pp.deliveryemployee_id == @user.id%> 
                   <%if pp.pickupscondition== "Package in Store"\
                     or pp.pickupscondition=="Delivery in Progress"\
                     or pp.pickupscondition=="Delivery Completed"%>
-                        <div id="inner-container" class="border">
-                          </br>
-                          <p>
-                            <%=label_tag(:name,"Request Name : " + pp.name)%>
-                          </p>
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <%if pp.pickupscondition != "Package in Store"%>
-                                          <%= link_to 'Roll Back', updatedeliverystatusback_path(selecteddrequest: pp),:name =>"Confirm"%>
-                                        <%else%>
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <%end%>
-                                    </td>
-                                    <td>
-                                        <%=label_tag(:dconditionlbl, "Delivery Condition :")%>
-                                        <%=label_tag(:pickupscondition, pp.pickupscondition)%>
-                                    </td>
-                                    <td><%= link_to 'Proceed to Next', updatedeliverystatusnext_path(selecteddrequest: pp),:name =>"Confirm"%></td>
-                                </tr>
-                            </table>
-                            </br></br>
-                        </div>
+                        <div id="inner-container" class="border"> 
+                    </br>
+                    <div id="contact-no">
+                        <%=label_tag(:name,"Contact No: "  )%>
+                        <%=pp.number%>
+                    </div>
+                    </br>
+                    <table class="table">
+                        <tr>
+                            <td><%=label_tag(:name,"Name: "  )%></td>
+                            <td><%=pp.name%></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><%=label_tag(:pickup_time,"D Time : ")%></td>
+                            <td>null</td>
+                        </tr>
+                        <tr>
+                            <td><%=label_tag(:package_location,"D Location :")%></td>
+                            <td><%= pp.company%>,<%= pp.address%>,<%= pp.city%>&nbsp;<%= pp.state%>&nbsp;<%= pp.zip%>.</td>
+                        </tr>
+                        <tr>
+                            <td><%=label_tag(:shipment_amount,"D Amount :")%></td>
+                            <td><%= pp.shipment_amount%></td>
+                        </tr>
+                        <tr>
+                            <td><h3><%=label_tag(:totle_cost,"Total Cost($) :")%></h3></td>
+                            <td><h3>Null</h3></td>
+                        </tr>
+                    </table>
+                    <div class="selection-border">
+                        <table >
+                            <tr>
+                                <td>
+                                <%if pp.pickupscondition != "Package in Store"%>
+                                    <%= link_to 'Roll Back', updatedeliverystatusback_path(selecteddrequest: pp),:name =>"Confirm",class:"btn buttondesign"%>
+                                    
+                                <%else%>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <%end%>
+                                </td>
+                                <td>
+                                    <div class="center-text">
+                                    <%=label_tag(:pconditionlbl, "Pickup Condition :")%>
+                                    <%=label_tag(:pickupscondition, pp.pickupscondition)%>
+                                    </div>
+                                </td>
+                                <td><%= link_to "Proceed to <br /> Next".html_safe, updatedeliverystatusnext_path(selecteddrequest: pp),:name =>"Confirm",class:"btn buttondesign"%></td>
+                            </tr>
+                        </table>
+                    </div>
                         </br></br>
+                </div>
+                </br></br>
                   <%else%>
                      <%if pp.pickupscondition!= "Request Completed"%>
                      <div id="inner-container" class="border">
