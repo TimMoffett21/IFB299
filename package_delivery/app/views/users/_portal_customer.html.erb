@@ -1,0 +1,13 @@
+<%= link_to 'New Pickup', newcustomerpickup_pickups_path(customer: @user)%><br><br>
+        <h3>PickupHistory</h3>
+        <% @customerpickup.each do |p|%>
+          <strong>Pickup Package :</strong><%=p.name%> </br></br>
+          <strong>Time</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong></br>
+          <% @customerpickuphistory.each do |ph|%>
+            <%if ph.pickupid == p.id%>
+              <%=ph.updated_at%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ph.condition%></br>
+            <%end%>
+          <%end%>
+        <%end%>

@@ -40,18 +40,21 @@ class UsersController < ApplicationController
 
   # Create
   def create
-    
+    @identity = "other"
     @user = User.new(user_params)
-    
-    
-    if @user.identity == "driver"
-      employeestatus = EmployeeWorkingStatus.new(employeeid: @user.id,status: "Available")
-      employeestatus.save
+    begin
+      @identity = current_user.identity.to_s
+    rescue Exception
     end
-
+  
     if @user.save
-      flash[:success] = "New employee added."
-      redirect_to current_user
+        if @identity =="other"
+          flash[:success] = "Registration Successful. Please login to websites."
+          redirect_to login_path
+        else
+          flash[:success] = "New employee registertion successful. View new Employee at Manage Users"
+          redirect_to current_user
+        end
     else
       render 'new'
     end
@@ -205,7 +208,7 @@ class UsersController < ApplicationController
 private
     def user_params
       params.require(:user).permit(:name, :email,:identity, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :company, :address, :phone)
     end
     
     def employeestatus_params

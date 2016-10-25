@@ -1,6 +1,7 @@
 /* CSS Design for manager option list located at top of management*/
 #manager_optionlist{
-  width: 100%;
+  width: 90%;
+  margin-left: 3%;
 }
 
 #manager-option-button{
@@ -17,7 +18,8 @@
 }
 
 #manager-option-button:hover {
-    background-color: #3e8e41;
+  background-color: #0000FF;
+  color: rgb(255,255,255);
 }
 
 
@@ -117,4 +119,12 @@
 #employee-absence{
   width:100%;
   text-align:center;
+}
+
+#show-user{
+  margin-left:2%;
+}
+
+.company{
+  display: none;   
 }
