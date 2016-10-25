@@ -26,34 +26,34 @@
 </head>
 <body>
     <h1>Quick Quote</h1>
-    <p>Enter parcel height: <input type="text" pattern= "\d*" required id="height"/>
+    <p>Enter parcel height: <input type="text"  id="height"/>
         <select type="multiple" id="heightunits">
             <option value="metres" selected="selected">metres</option>
             <option value="millimetres">millimetres</option>
             <option value="centimetres">centimetres</option>
         </select>
     </p>
-    <p>Enter parcel weight: <input type="text" pattern= "\d*" required id="weight"/>
+    <p>Enter parcel weight: <input type="text" id="weight"/>
         <select type="multiple" id="weightunits">
             <option value="kg" selected="selected">kilograms</option>
             <option value="grams">grams</option>
         </select>
     </p>
-    <p>Enter parcel length: <input type="text" pattern= "\d*" required id="length"/>
+    <p>Enter parcel length: <input type="text"   id="length"/>
         <select type="multiple" id="lengthunits">
             <option value="metres" selected="selected">metres</option>
             <option value="centimetres">centimetres</option>
             <option value="millimetres">millimetres</option>
         </select>
     </p>
-    <p>Enter parcel width: <input type="text" pattern= "\d*" required id="width"/>
+    <p>Enter parcel width: <input type="text"   id="width"/>
         <select type="multiple" id="widthunits">
             <option value="metres" selected="selected">metres</option>
             <option value="centimetres">centimetres</option>
             <option value="millimetres">millimetres</option>
         </select>
     </p>
-    <input type="submit" value="calculate quote" onclick="calcQuote();">
+    <input type="submit" value="Calculate Quote" onclick="calcQuote();">
     <h1>Cost of package delivery is: $ <span id="output">?</span></h1>
 
 </body>
