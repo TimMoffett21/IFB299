@@ -50,8 +50,11 @@ Rails.application.routes.draw do
       get :show
     end
   end
-  get   '/assignjob', to:'users#assignjob'
-  post '/assignjob', to:'users#assignjob'
+  get   '/assignpickup', to:'users#assignpickup'
+  post '/assignpickup', to:'users#assignpickup'
+  
+  get   '/assigndelivery', to:'users#assigndelivery'
+  post '/assigndelivery', to:'users#assigndelivery'
   
   get   '/updatepickupstatusnext', to:'users#updatepickupstatusnext'
   post '/updatepickupstatusnext', to:'users#updatepickupstatusnext'
@@ -65,6 +68,8 @@ Rails.application.routes.draw do
   get   '/updatedeliverystatusback', to:'users#updatedeliverystatusback'
   post '/updatedeliverystatusback', to:'users#updatedeliverystatusback'
   
+  get   '/employeeabsence', to:'users#employeeabsence'
+  post '/employeeabsence', to:'users#employeeabsence'
   resources :users
   
   

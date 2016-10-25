@@ -6,7 +6,7 @@
     <b>Profile Image</b>
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">CHANGE</a>
+      <a href="http://gravatar.com/emails" target="_blank">CHANGE IMAGES</a>
       <br><br><br><br><br>
     </div>
     <div>
@@ -14,16 +14,28 @@
       <%= render 'shared/error_messages' %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, :value => @user.name, class: 'form-control' %>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, :value => @user.email, class: 'form-control' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <% if @user.identity == "individual" || @user.identity == "business" %>
+        <% if @user.identity == "business" %>
+          <%= f.label :company %>
+          <%= f.text_field :company, class: 'form-control' %>
+        <% end %>
+        
+      <% end %>
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+        
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: 'form-control' %>
       <br><br>
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>

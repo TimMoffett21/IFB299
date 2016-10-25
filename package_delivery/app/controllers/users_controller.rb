@@ -11,15 +11,17 @@ class UsersController < ApplicationController
     @loginuser = params[:id]
     
     @employees = User.where(:identity => "driver")
-    @employees_available = User.where("identity = 'driver'")
+    @employees_available = User.where("identity = 'driver'").order('id')
     @pending_delivery = Pickup.where(:pickupscondition=>"Pickup Complete")
-    @pending_pickup = Pickup.where( "(pickupscondition ='Pending') or pickupscondition ='pending'")
+    @pending_pickup = Pickup.where( "employeeid =0 or deliveryemployee_id =0").order('id')
     @allpickup = Pickup.all
     @employee_status = EmployeeWorkingStatus.all
-    @pendingrequest = Pickup.where( "(pickupscondition ='Pending') or pickupscondition ='pending'")
+    
+    @pendingrequest = Pickup.where( "employeeid =0 or deliveryemployee_id =0")
   
     @customerpickup = Pickup.where("customer_id =?", @user.id.to_i)
     @customerpickuphistory = PickupHistory.all
+    @allcustomer = User.where(:identity => "customer")
     
   end
   
@@ -38,18 +40,21 @@ class UsersController < ApplicationController
 
   # Create
   def create
-    
+    @identity = "other"
     @user = User.new(user_params)
-    
-    
-    if @user.identity == "driver"
-      employeestatus = EmployeeWorkingStatus.new(employeeid: @user.id,status: "Available")
-      employeestatus.save
+    begin
+      @identity = current_user.identity.to_s
+    rescue Exception
     end
-
+  
     if @user.save
-      flash[:success] = "New employee added."
-      redirect_to current_user
+        if @identity =="other"
+          flash[:success] = "Registration Successful. Please login to websites."
+          redirect_to login_path
+        else
+          flash[:success] = "New employee registertion successful. View new Employee at Manage Users"
+          redirect_to current_user
+        end
     else
       render 'new'
     end
@@ -80,14 +85,22 @@ class UsersController < ApplicationController
 
   
 
-  def assignjob
+  def assignpickup
     
     @selectedrequest = Pickup.find(params[:rid])
-    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:pickupemployeeid][:eid],deliveryemployee_id: params[:deliveryemployeeid][:deid])
+    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:pickupemployeeid][:eid])
     @selectedrequest.save
     
     @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:pickupemployeeid][:eid],pickupid: @selectedrequest.id)
     @pickup.save
+    
+    redirect_to current_user
+  end
+  
+  def assigndelivery
+    @selectedrequest = Pickup.find(params[:rid])
+    @selectedrequest.update_attributes(deliveryemployee_id: params[:deliveryemployeeid][:deid])
+    @selectedrequest.save
     
     redirect_to current_user
   end
@@ -107,6 +120,9 @@ class UsersController < ApplicationController
     end
     
     if  @updatecondition ==1
+      @previoushistory = @request.pickupscondition.to_s
+      @request.update_attributes(pickupscondition: @procedures)
+      @request.save
       updatepickuprecord
       redirect_to current_user
     end
@@ -126,7 +142,9 @@ class UsersController < ApplicationController
     end
     
     if  @updatecondition ==1
+       @previoushistory = @request.pickupscondition.to_s
       @request.update_attributes(pickupscondition: @procedures)
+      @request.save
       updatepickuprecord
       redirect_to current_user
     end
@@ -147,7 +165,9 @@ class UsersController < ApplicationController
     end
     
     if  @updatecondition ==1
+      @previoushistory = @request.pickupscondition.to_s
       @request.update_attributes(pickupscondition: @procedures)
+      @request.save
       updatepickuprecord
       redirect_to current_user
     end
@@ -157,15 +177,28 @@ class UsersController < ApplicationController
     @request = Pickup.find(params[:selecteddrequest])
     if @request.pickupscondition == "Delivery in Progress"
       @procedures = "Package in Store"
+      @updatecondition =1
     elsif @request.pickupscondition == "Delivery Completed"
       @procedures = "Delivery in Progress"
+      @updatecondition =1
     end
     
     if  @updatecondition ==1
+      @previoushistory = @request.pickupscondition.to_s
       @request.update_attributes(pickupscondition: @procedures)
+      @request.save
       updatepickuprecord
       redirect_to current_user
     end
+  end
+  
+  def employeeabsence
+    if current_user.identity ="driver"
+      User.find(current_user.id).update_attributes(identity:"Absence")
+    else
+      User.find(current_user.id).update_attributes(identity:"driver")
+    end
+    redirect_to current_user
   end
   
   
@@ -175,7 +208,7 @@ class UsersController < ApplicationController
 private
     def user_params
       params.require(:user).permit(:name, :email,:identity, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :company, :address, :phone)
     end
     
     def employeestatus_params
@@ -199,14 +232,18 @@ private
     end
     
     def updatepickuprecord
-       @request.update_attributes(pickupscondition: @procedures)
-      
       @checkPH = PickupHistory.where("pickupid = ? and condition=? ",@request.id.to_i,@procedures.to_s)
       if @checkPH.blank?
         @newPHistory = PickupHistory.new(condition: @procedures.to_s,pickupid: @request.id.to_i, employeeid: @request.employeeid.to_i)
         @newPHistory.save
       else
+         @deletehistory = PickupHistory.where("pickupid = ? and condition=? ",@request.id.to_i,@previoushistory.to_s)
+         if @deletehistory.blank?
+         else
+          @deletehistory.destroy_all
+         end
          @checkPH.update_all(condition: @procedures.to_s)
+         
       end
     end
   

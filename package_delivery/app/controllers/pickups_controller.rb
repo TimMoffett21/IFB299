@@ -30,6 +30,7 @@ class PickupsController < ApplicationController
   # POST /pickups
   # POST /pickups.json
   def create
+    @cid = User.all
     @pickup = Pickup.new(pickup_params)
     respond_to do |format|
       if @pickup.save

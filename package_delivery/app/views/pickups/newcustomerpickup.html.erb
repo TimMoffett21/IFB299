@@ -21,7 +21,7 @@
     <%=@cid.name%></br>
     
     <%= label_tag('customer_contactno', 'Contact No. :')%>
-    null</br>
+    <%=@cid.phone%></br>
   </div>
   </br></br>
   
@@ -59,7 +59,7 @@
     
     <div class="field">
       <%= f.label :package_location,"Pickup Address" %><br>
-      <%= f.text_field :package_location, :value => "Enter customer address here as default" %>
+      <%= f.text_field :package_location, :value => @cid.address %>
     </div>
     
     <div class="field">

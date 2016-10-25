@@ -2,17 +2,17 @@ class Quote < ActiveRecord::Base
     validates :quantity, presence: true
                         
     
-    validates :height, presence: true,
+    validates :heightunits, presence: true,
                         :inclusion => 0..40
    
     
-    validates :width, presence: true,
+    validates :widthunits, presence: true,
                         :inclusion => 0..40
     
-    validates :length, presence: true,
+    validates :lengthunit, presence: true,
                         :inclusion => 0..40
     
-    validates :weight, presence: true,
+    validates :weightunits, presence: true,
                         :inclusion => 0..40
     
 end

@@ -34,5 +34,8 @@ class Pickup < ActiveRecord::Base
                     length: { minimum: 5 }
                     
     validates_format_of :delivery_type, :with => /\A[a-zA-Z]+\z/,
-    :message => "Only letters allowed", presence: true    
+    :message => "Only letters allowed", presence: true 
+    
+    validates :totle_cost, presence: true
+    
 end
