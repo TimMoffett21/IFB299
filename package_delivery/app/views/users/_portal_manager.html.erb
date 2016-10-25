@@ -14,7 +14,17 @@
       <div id="container">
         <div id ="inner-container">
           </br>
+          
+          
+          
           <%= form_tag("/assignpickup", method: "post") do %>
+            
+            <%if pr.employeeid== 0%>
+              <%=label_tag(:totle_cost,"Total Cost ($) : ")%>
+              <%= text_field_tag(:totle_cost, pr.totle_cost)%>
+            <%else%>
+              <h3>Total Cost : $<%=pr.totle_cost%></h3>
+            <%end%>
             <%=label_tag(:name,"Req Id : " + pr.name + "-"+ pr.id.to_s + "-"+ pr.pickup_date.strftime("%d/%m/%Y").to_s)%>
             </br></br>
             <%=label_tag(:delivery_type,"Pickup Type : " + pr.location_type.to_s)%>
@@ -23,6 +33,7 @@
              </br>         
             <%@getrid= pr.id%>
             <%= hidden_field_tag :rid, @getrid %>
+            
             
             </br>
             <%=label_tag(:Employee,"Pickup Employee :")%>
@@ -38,9 +49,14 @@
           </br></br></br>
           <%= form_tag("/assigndelivery", method: "post") do %>  
             <%= hidden_field_tag :rid, @getrid %>
+            
             <%=label_tag(:delivery_type,"Delivery Type : " + pr.delivery_type.to_s)%>
             </br>
-            <%=label_tag(:delivery_datetime,"Delivery Time : " + pr.delivery_datetime.strftime("%d/%m/%Y, %I:%M%p").to_s)%>
+            <%if pr.delivery_datetime.blank? %>
+              <p><strong>Delivery Time : </strong>null</p>
+            <%else%>
+              <%=label_tag(:delivery_datetime,"Delivery Time : " + pr.delivery_datetime.strftime("%d/%m/%Y, %I:%M%p").to_s)%>
+            <%end%>
             </br></br>
             <%=label_tag(:Employee,"Delivery Employee :")%>
             <%if pr.deliveryemployee_id == 0%>

@@ -87,21 +87,29 @@ class UsersController < ApplicationController
 
   def assignpickup
     
-    @selectedrequest = Pickup.find(params[:rid])
-    @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:pickupemployeeid][:eid])
-    @selectedrequest.save
+    if params[:totle_cost] ==""
+      flash[:danger] = "Please enter price before make assign request."
+    else
+        @selectedrequest = Pickup.find(params[:rid])
+        @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:pickupemployeeid][:eid], totle_cost: params[:totle_cost].to_f)
+        @selectedrequest.save
     
-    @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:pickupemployeeid][:eid],pickupid: @selectedrequest.id)
-    @pickup.save
+        @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:pickupemployeeid][:eid],pickupid: @selectedrequest.id)
+        @pickup.save
     
+    end
     redirect_to current_user
   end
   
   def assigndelivery
-    @selectedrequest = Pickup.find(params[:rid])
-    @selectedrequest.update_attributes(deliveryemployee_id: params[:deliveryemployeeid][:deid])
-    @selectedrequest.save
-    
+    s
+    if params[:totle_cost] ==""
+      flash[:danger] = "Please enter price before make assign request."
+    else
+      @selectedrequest = Pickup.find(params[:rid])
+      @selectedrequest.update_attributes(deliveryemployee_id: params[:deliveryemployeeid][:deid])
+      @selectedrequest.save
+    end
     redirect_to current_user
   end
   
