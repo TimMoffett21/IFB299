@@ -1,13 +1,4 @@
-<h3>Customer Information</h3>
-  <div id="pickup-cus-info">
-    <%= label_tag('customer_name', 'Name :')%>
-    <%=@cid.name%></br>
-    
-    <%= label_tag('customer_contactno', 'Contact No. :')%>
-    null</br>
-  </div>  
-</br></br>
-  
+
 <%= form_for(@pickup) do |f| %>
   <% if @pickup.errors.any? %>
     <div id="error_explanation">
@@ -31,7 +22,6 @@
   </div>
   </br></br>
   
-
   <h3>Package Information</h3>
   <div id="Package Info">
     <div class="field">

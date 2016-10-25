@@ -25,13 +25,14 @@ class PickupsController < ApplicationController
 
   # GET /pickups/1/edit
   def edit
+    @cid = User.find(@pickup.customer_id)
   end
 
   # POST /pickups
   # POST /pickups.json
   def create
-    @cid = User.all
     @pickup = Pickup.new(pickup_params)
+    @cid = User.all
     respond_to do |format|
       if @pickup.save
         @pickup_history = PickupHistory.new(condition: "Pending",employeeid: 0,pickupid: @pickup.id.to_i)

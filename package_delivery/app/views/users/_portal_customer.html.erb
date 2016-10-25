@@ -1,13 +1,31 @@
-<%= link_to 'New Pickup', newcustomerpickup_pickups_path(customer: @user)%><br><br>
-        <h3>PickupHistory</h3>
-        <% @customerpickup.each do |p|%>
-          <strong>Pickup Package :</strong><%=p.name%> </br></br>
-          <strong>Time</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Condition</strong></br>
-          <% @customerpickuphistory.each do |ph|%>
-            <%if ph.pickupid == p.id%>
-              <%=ph.updated_at%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ph.condition%></br>
+
+ 
+<div class="main-box">
+  <div class="center">
+             <%= link_to 'New Pickup', newcustomerpickup_pickups_path(customer: @user),class:"btn abbutton"%><br><br>
+            <h3>PickupHistory</h3>
+            <% @customerpickup.each do |p|%>
+              <div class="historyborder">
+              </br>
+              <h3><strong>Pickup Package :</strong><%=p.name%></h3> </br></br>
+              <table class="table">
+                <tr>
+                  <th>Time :</th>
+                  <th>Condition</th>
+                </tr>
+                </br>
+                <% @customerpickuphistory.each do |ph|%>
+                  <%if ph.pickupid == p.id%>
+                    <tr>
+                      <td><%=ph.updated_at%></td>
+                      <td><%=ph.condition%></td>
+                    </tr>
+                  <%end%>
+                <%end%>
+              </table>
+              </br>
+              </div>
+              </br></br></br>
             <%end%>
-          <%end%>
-        <%end%>
+  </div>
+</div>

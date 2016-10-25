@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @employees_available = User.where("identity = 'driver'").order('id')
     @pending_delivery = Pickup.where(:pickupscondition=>"Pickup Complete")
     @pending_pickup = Pickup.where( "employeeid =0 or deliveryemployee_id =0").order('id')
-    @allpickup = Pickup.all
+    @allpickup = Pickup.all.order("id")
     @employee_status = EmployeeWorkingStatus.all
     
     @pendingrequest = Pickup.where( "employeeid =0 or deliveryemployee_id =0")
@@ -89,6 +89,7 @@ class UsersController < ApplicationController
     
     if params[:totle_cost] ==""
       flash[:danger] = "Please enter price before make assign request."
+      redirect_to current_user
     else
         @selectedrequest = Pickup.find(params[:rid])
         @selectedrequest.update_attributes(pickupscondition: "Accepted",employeeid: params[:pickupemployeeid][:eid], totle_cost: params[:totle_cost].to_f)
@@ -96,13 +97,13 @@ class UsersController < ApplicationController
     
         @pickup =PickupHistory.new(condition:"Accepted",employeeid: params[:pickupemployeeid][:eid],pickupid: @selectedrequest.id)
         @pickup.save
-    
+        redirect_to current_user
     end
-    redirect_to current_user
+    
   end
   
   def assigndelivery
-    s
+   
     if params[:totle_cost] ==""
       flash[:danger] = "Please enter price before make assign request."
     else
@@ -201,11 +202,12 @@ class UsersController < ApplicationController
   end
   
   def employeeabsence
-    if current_user.identity ="driver"
       User.find(current_user.id).update_attributes(identity:"Absence")
-    else
-      User.find(current_user.id).update_attributes(identity:"driver")
-    end
+      redirect_to current_user
+  end
+  
+  def employeeback
+   User.find(current_user.id).update_attributes(identity:"driver")  
     redirect_to current_user
   end
   

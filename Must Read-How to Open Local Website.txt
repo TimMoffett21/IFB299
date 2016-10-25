@@ -1,0 +1,38 @@
+We use postsql for both local and server database. In order to run the website. Tutor are require
+to:
+
+  Please run the test before examine code or test might failed caused by changing in website.
+  
+  All command are in ubuntu:
+
+  1. run "$bundle install" command in package_delivery folder path
+  2. enter "$sudo service postgresql start" command to start postsql server
+  3. enter "$psql" to enter postgresql server
+  4. enter "#CREATE DATABASE package_delivery;" to generate database in local server, then ctrl +d to exit server.
+  5. enter "$rake db :migrate" to generate database.
+
+  P/S: If facing problem in migration tutor can examine our work on website:
+  https://onthespot-pckdeliveryservice.herokuapp.com
+  
+  Manager default email : manager@onthespot.com
+  Manager default password: abcd1234
+  
+  Employee 1 default email : employee1@onthespot.com
+  Employee 1 default password : abcd1234
+  
+  Customer 1 default email : customer1@hotmail.com
+  Customer 1 default password :abcd1234
+  
+The data are not initialized. We had provide a signup link in log in page. Tutor 
+are able to register with a new profile then login to manager profile.
+
+All expand and collapse lists got problem, it unable to expand after collapse,
+tutor can refresh the webpage to open the expand lists
+
+
+//Test//
+We are using Selinium, not rails test to test our website, 
+the test file is container in another test folder.
+
+//Website address//
+https://onthespot-pckdeliveryservice.herokuapp.com

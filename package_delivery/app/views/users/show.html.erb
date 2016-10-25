@@ -9,7 +9,7 @@
             <%= gravatar_for @user %><br>
               Name: <%= @user.name %><br>
               Email: <%= @user.email%><br>
-              <% if @user.identity == "manager" || @user.identity == "driver" %> 
+              <% if @user.identity == "manager" || @user.identity == "driver" || @user.identity == "Absence" %> 
                 Position: <%= @user.identity%><br>
               <% elsif @user.identity == "individual" || @user.identity == "business" %>
                 You are our respectful <%= @user.identity %> customer! <br>

@@ -5,11 +5,11 @@ class NewsController < ApplicationController
   
   
   def CustomerNews
-    @news= News.all
+    @news= News.all.order("updated_at DESC")
   end
   
   def show
-    @news = News.all
+    @news = News.all.order("id DESC")
   end
   
   def destroy

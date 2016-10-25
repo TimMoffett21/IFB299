@@ -2,7 +2,7 @@
     <%if current_user.identity == "driver"%>
         <%= link_to "Report Absence",employeeabsence_path, class:"btn abbutton"%>
     <%else%>
-       <%= link_to "Back to Work",employeeabsence_path, class:"btn abbutton"%>
+       <%= link_to "Back to Work",employeeback_path, class:"btn abbutton"%>
     <%end%>
 </div>
 </br></br>
@@ -20,7 +20,7 @@
                         <%=label_tag(:name,"Contact No: "  )%>
                         <%  @allcustomer.each do |c|%>
                             <%if pp.customer_id== c.id%>
-                                <%=c.email%>
+                                <%=c.phone%>
                             <%end%>
                         <%end%>
                     </div>
@@ -105,8 +105,8 @@
                             <td><%= pp.shipment_amount%></td>
                         </tr>
                         <tr>
-                            <td><h3><%=label_tag(:totle_cost,"Total Cost($) :")%></h3></td>
-                            <td><h3>Null</h3></td>
+                            <td><h3><%=label_tag(:totle_cost,"Cost($) :")%></h3></td>
+                            <td><h3><%= pp.totle_cost%></h3></td>
                         </tr>
                     </table>
                     <div class="selection-border">

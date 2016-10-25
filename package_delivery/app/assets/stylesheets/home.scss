@@ -1,3 +1,15 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#slo{
+    color : black;
+    border: 2px solid black ;
+      border-radius: 5px;
+}
+
+#slo:hover {
+  background-color: rgb(219, 230, 238);
+  color: black;
+}
