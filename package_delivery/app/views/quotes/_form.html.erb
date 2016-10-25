@@ -13,10 +13,12 @@
             var lengthunits=document.getElementById("lengthunits").value;
             var width=Number(document.getElementById("width").value);
             var widthunits=document.getElementById("widthunits").value;
+            var quantity=Number(document.getElementById("quantity").value);
+            
 
 
             //Perform calculation
-            var resQuote=length*height*width+weight;
+            var resQuote=length+height+width+weight*quantity;
 
             //Display result of calculation
             document.getElementById("output").innerText=resQuote;
@@ -25,8 +27,10 @@
     </script>
 </head>
 <body>
-    <h1>New Quote</h1>
-    <p>Enter parcel height: <input type="text" id="height"/>
+    <h1>Quick Quote</h1>
+    
+    <p>Enter the quantity: <input type= "text" id="quantity"</p>
+    <p>Enter parcel height: <input type="text"  id="height"/>
         <select type="multiple" id="heightunits">
             <option value="metres" selected="selected">metres</option>
             <option value="millimetres">millimetres</option>
@@ -39,21 +43,21 @@
             <option value="grams">grams</option>
         </select>
     </p>
-    <p>Enter parcel length: <input type="text" id="length"/>
+    <p>Enter parcel length: <input type="text"   id="length"/>
         <select type="multiple" id="lengthunits">
             <option value="metres" selected="selected">metres</option>
             <option value="centimetres">centimetres</option>
             <option value="millimetres">millimetres</option>
         </select>
     </p>
-    <p>Enter parcel width: <input type="text" id="width"/>
+    <p>Enter parcel width: <input type="text"   id="width"/>
         <select type="multiple" id="widthunits">
             <option value="metres" selected="selected">metres</option>
             <option value="centimetres">centimetres</option>
             <option value="millimetres">millimetres</option>
         </select>
     </p>
-    <input type="submit" value="calculate quote" onclick="calcQuote();">
+    <input type="submit" value="Calculate Quote" onclick="calcQuote();">
     <h1>Cost of package delivery is: $ <span id="output">?</span></h1>
 
 </body>

@@ -33,5 +33,9 @@ class Pickup < ActiveRecord::Base
     validates :package_location, presence: true,
                     length: { minimum: 5 }
                     
-           
+    validates_format_of :delivery_type, :with => /\A[a-zA-Z]+\z/,
+    :message => "Only letters allowed", presence: true 
+    
+    validates :totle_cost, presence: true
+    
 end
