@@ -1,0 +1,60 @@
+// Place all the styles related to the news controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.corner{
+  
+}
+
+
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: 	#B0E0E6;
+    color: white;
+
+}
+
+#manager-new-item-add{
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  background-color: #00aaff;
+  width: 30%;
+  left: 35%;
+  position: absolute;
+}
+
+#manager-news-item-edit{
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  width:20%;
+  background-color: #00aaff;
+  padding: 5px 48px;
+  text-align: center;
+ 
+  float:right;
+  margin-right: 10px; 
+ 
+}
+
+#manager-news-item-delete{
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 32px;
+  color: white;
+  background-color: #00aaff;
+  width:20%;
+  float:right;
+  
+}
+
+#news-header{
+  float:left;
+  color:black;
+}
+
+.corner{
+  display: inline-block;
+  width: 100%;
+}

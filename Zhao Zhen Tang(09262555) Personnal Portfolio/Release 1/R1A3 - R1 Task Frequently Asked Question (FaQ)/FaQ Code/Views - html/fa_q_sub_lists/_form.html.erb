@@ -1,0 +1,18 @@
+<%= form_for (@sublist) do |f| %>
+ 
+  <% if @sublist.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@sublist.errors.count, "error") %> prohibited
+        this Testimony from being saved:
+      </h2>
+      <ul>
+        <% @sublist.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+<% end %>

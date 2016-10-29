@@ -1,0 +1,21 @@
+<h1>On the Spot News</h1>
+
+<!DOCTYPE html>
+<html>
+    <div class="container">
+      <div class="panel-group">
+        <%@news.each do |n| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h4><%=n.title%></h4>
+              </div>
+              <div class="panel-body">
+                  <p><u><%= n.updated_at.strftime("Posted Date: %d/%m/%Y , %I:%M%p")%></u></p><br>
+                  <p style="white-space: pre-line;"><%=n.content%></p>
+              </div>
+            </div>
+        <%end%>
+       </div>
+    </div>
+
+</html>

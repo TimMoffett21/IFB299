@@ -1,0 +1,36 @@
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Accordion - Collapse content</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#main_accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false,
+      navigation:true
+      
+    });
+     $( "#sub_accordion1" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      navigation:true,
+      active: false
+    });
+     $( "#sub_accordion2" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false,
+      navigation:true
+    });
+     $( "#sub_accordion3" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false,
+      navigation:true
+    });
+  } );
+  </script>

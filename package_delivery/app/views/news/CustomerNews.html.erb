@@ -1,8 +1,15 @@
 <h1>On the Spot News</h1>
-
 <!DOCTYPE html>
 <html>
     <div class="container">
+      
+      <%= form_tag(onthespotnews_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+        <%= submit_tag "Search" %>
+      <% end %>
+      
+      
+      
       <div class="panel-group">
         <%@news.each do |n| %>
             <div class="panel panel-default">

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>  
+<header>
+ 
+</header>
+<div id="show-user">  
+      <div class="row">
+          <aside class="col-md-4">
+            <%= gravatar_for @user %><br>
+              Name: <%= @user.name %><br>
+              Email: <%= @user.email%><br>
+              <% if @user.identity == "manager" || @user.identity == "driver" || @user.identity == "Absence" %> 
+                Position: <%= @user.identity%><br>
+              <% elsif @user.identity == "individual" || @user.identity == "business" %>
+                You are our respectful <%= @user.identity %> customer! <br>
+              <% end %>
+              <% if @user.identity == "business" %>
+                Your Company: <%= @user.company %> <br>
+              <% end %>
+              <% if @user.identity == "individual" || @user.identity == "business" %>
+                </br></br>
+                Address:  <%= @user.address %> <br>
+                Phone:    <%= @user.phone %> <br>
+              <% end %>
+          </aside>
+      </div>
+      </br></br>
+      <% if @user.identity == "manager" %>
+          <%= render 'portal_manager' %>
+      <% elsif @user.identity == "driver" or @user.identity == "Absence" %>
+          <%= render 'portal_driver' %>
+      <% elsif @user.identity == "individual" || @user.identity == "business" %>
+          <%= render 'portal_customer' %>
+      <% end %>
+</div>
+</html>

@@ -1,0 +1,21 @@
+<h1>On The Spot News Edit</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@new) do |f| %>
+    <%= render 'shared/news_error_messages' %>
+      
+        <%= f.label :title%>
+        <%= f.text_field:title,class: 'form-control'%>
+      
+        <%= f.label :content%>
+        <%= f.text_area:content,class: 'form-control',:id=>"textarea",:rows => 10%>
+      <br><br>
+        <%= f.submit "Update News",class: "btn",:id => "manager-faq-update-btn"%>
+     
+    <%end%>
+     <br>
+    <%= link_to 'Back', news_path, class:"btn",:id => "manager-faq-back-btn"%>
+
+  </div>
+ 
+</div>

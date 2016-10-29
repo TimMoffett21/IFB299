@@ -1,0 +1,23 @@
+<div class="faq-center">
+<h1>New FaQ</h1>
+
+<%= form_for(@sublist) do |f| %>
+  <%= render 'shared/faq_error_messages' %>
+      
+       
+        <%= f.label :FaqMainLstId,'Faq Main Category :'%>
+        <br>
+        <%= f.select :FaqMainLstId, [['General', 1],['Personnel',2],['Business',3]], class: 'form-control'%>
+      <br><br>
+        <%= f.label :SubFaqQuestion,'FaQ Title :'%>
+        <br>
+        <%= f.text_field:SubFaqQuestion,class: 'form-control'%>
+      <br><br>
+        <%= f.label :SubFaqAnswer, "FaQ Answers :"%>
+        <br>
+        <%= f.text_area:SubFaqAnswer,class: "form-control",:id=> "textarea",:rows => 10 %>
+      <br><br>
+        <%= f.submit "Confirm new FaQ",class: "btn btn-primary",:id => "manager-faq-update-btn"%>
+<%end%>
+<%= link_to 'Back', fa_q_sub_lists_path,:id => "manager-faq-back-btn",class:"btn"%>
+</div>

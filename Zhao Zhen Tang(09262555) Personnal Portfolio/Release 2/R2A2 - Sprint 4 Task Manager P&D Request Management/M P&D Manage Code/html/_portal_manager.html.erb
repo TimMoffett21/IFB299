@@ -1,0 +1,150 @@
+
+<%= render 'shared/manager_selection' %>
+
+<div class="main-box">
+  <h1>Request Management</h1>
+<div class="left-box">
+  <h3 id="header">Pending Request</h3>
+  <%if @pending_pickup.count ==0%>
+    </br></br>
+    <h4 style="color:#D3D3D3; margin-left:25%;">No Available Pickup Request</h4>
+    </br></br>
+  <%else%>
+    <%@pending_pickup.each do |pr|%>
+      <div id="container">
+        <div id ="inner-container">
+          </br>
+          
+          
+          
+          <%= form_tag("/assignpickup", method: "post") do %>
+            
+            <%if pr.employeeid== 0%>
+              <%=label_tag(:totle_cost,"Total Cost ($) : ")%>
+              <%= text_field_tag(:totle_cost, pr.totle_cost)%>
+            <%else%>
+              <h3>Total Cost : $<%=pr.totle_cost%></h3>
+            <%end%>
+            <%=label_tag(:name,"Req Id : " + pr.name + "-"+ pr.id.to_s + "-"+ pr.pickup_date.strftime("%d/%m/%Y").to_s)%>
+            </br></br>
+            <%=label_tag(:delivery_type,"Pickup Type : " + pr.location_type.to_s)%>
+            </br>
+            <%=label_tag(:pickup_time,"Pickup Time : " + pr.pickup_date.strftime("%d/%m/%Y").to_s+ "         " + pr.pickup_time.strftime("%I:%M%p").to_s  )%>
+             </br>         
+            <%@getrid= pr.id%>
+            <%= hidden_field_tag :rid, @getrid %>
+            
+            
+            </br>
+            <%=label_tag(:Employee,"Pickup Employee :")%>
+            <%if pr.employeeid == 0%>
+              <%= collection_select(:pickupemployeeid, :eid,@employees_available, :id, :name,
+                  {:include_blank => false })%>
+              </br></br>
+                  <%= submit_tag("Confirm")%>
+            <%else%>
+              <%= User.find(pr.employeeid).name.to_s%>
+            <%end%>
+          <%end%>
+          </br></br></br>
+          <%= form_tag("/assigndelivery", method: "post") do %>  
+            <%= hidden_field_tag :rid, @getrid %>
+            
+            <%=label_tag(:delivery_type,"Delivery Type : " + pr.delivery_type.to_s)%>
+            </br>
+            <%if pr.delivery_datetime.blank? %>
+              <p><strong>Delivery Time : </strong>null</p>
+            <%else%>
+              <%=label_tag(:delivery_datetime,"Delivery Time : " + pr.delivery_datetime.strftime("%d/%m/%Y, %I:%M%p").to_s)%>
+            <%end%>
+            </br></br>
+            <%=label_tag(:Employee,"Delivery Employee :")%>
+            <%if pr.deliveryemployee_id == 0%>
+              <%= collection_select(:deliveryemployeeid, :deid,@employees_available, :id, :name,
+                  {:include_blank => false })%>
+              </br></br>
+              <%= submit_tag("Confirm")%>
+            <%else%>
+              <%= User.find(pr.employeeid).name.to_s%>
+            <%end%>
+            </br></br>
+          <%end%>
+        </div>
+      </div>
+      </br></br>
+    <%end%>
+  <%end%>
+</div>
+        
+<div class="right-box">
+  <h3 id="header">Employee Working Status</h3>
+  
+  <%@employees_available.each do |s|%>
+    <div id="container">
+      <h4>Name : <%=s.name%></h4>
+        
+      <p>Employee id : <%=s.id%></p>
+      <h5><strong>Responsible Pickup</strong></h5>
+        <% @allpickup.each do |p|%>
+           <% if p.pickupscondition !="Pending" and p.pickupscondition !="Request Completed"\
+              and p.pickupscondition !="Package in Store" and p.pickupscondition !="Delivery in Progress"\
+              and p.pickupscondition !="Delivery Completed" and p.employeeid == s.id%>
+            <div id="inner-container" class="border">
+              <table>
+                <tr>
+                  <td>Req Id:</td>
+                  <td><%=p.name%>-<%=p.id%> -<%=p.pickup_date.strftime("%d/%m/%Y")%></td>
+                </tr>
+                <tr>
+                  <td>D Time:</td>
+                  <td><%= p.pickup_date.strftime("%d/%m/%Y")%> <%= p.pickup_time.strftime("%I:%M%p")%></td>
+                </tr>
+                <tr>
+                  <td>Location:</td>
+                  <td><%=p.package_location%></td>
+                </tr>
+                <tr>
+                  <td>Condition:</td>
+                  <td><%=p.pickupscondition%></td>
+                </tr>
+              </table>
+              </br>
+            </div>
+            </br>
+           <%end%>
+        <%end%>
+        </br>
+        <h5><strong>Responsible Delivery</strong></h5>
+        <% @allpickup.each do |p|%>
+          <% if p.deliveryemployee_id == s.id and p.pickupscondition != "Request Completed"%>
+            <div id="inner-container" class="border">  
+                <table>
+                <tr>
+                  <td>Req Id:</td>
+                  <td><%=p.name%>-<%=p.id%> -<%=p.pickup_date.strftime("%d/%m/%Y")%></td>
+                </tr>
+                <tr>
+                  <td>P Time:</td>
+                  <%if p.delivery_datetime !=nil%>
+                    <td><%=p.delivery_datetime.strftime("%d/%m/%Y, %I:%M%p")%></td>
+                  <%end%>
+                </tr>
+                <tr>
+                  <td>Location:</td>
+                  <td><%=p.package_location%></td>
+                </tr>
+                <tr>
+                  <td>Condition:</td>
+                  <td><%=p.pickupscondition%></td>
+                </tr>
+              </table>
+              </br>
+            </div>  
+              </br>
+          <%end%>
+        <%end%>
+        </br>
+      </div>  
+      </br></br>
+  <%end%>
+       

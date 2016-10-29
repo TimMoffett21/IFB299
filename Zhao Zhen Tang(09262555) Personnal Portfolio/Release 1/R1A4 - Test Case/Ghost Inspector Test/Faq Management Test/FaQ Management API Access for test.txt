@@ -1,0 +1,16 @@
+Run the test
+====================
+https://api.ghostinspector.com/v1/tests/57e12c403721e452123da3f3/execute/?apiKey=aa56b2267e34c157fb4467c5198fae6518c6dd88
+
+List Result for this test
+===========================
+https://api.ghostinspector.com/v1/tests/57e12c403721e452123da3f3/results/?apiKey=aa56b2267e34c157fb4467c5198fae6518c6dd88
+
+Get details for this test
+===============================
+https://api.ghostinspector.com/v1/tests/57e12c403721e452123da3f3/?apiKey=aa56b2267e34c157fb4467c5198fae6518c6dd88
+
+
+
+
+

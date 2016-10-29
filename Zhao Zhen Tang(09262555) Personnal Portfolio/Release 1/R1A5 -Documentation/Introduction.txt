@@ -1,0 +1,18 @@
+Below Show all the document I produced in Release 1.
+
+Burn Down Chart
+-----------------
+All Responsible to produce all burn down chart in Release 1.
+
+Jira
+----------------
+Responsible to Add in all user story to Jira, then add
+in subtask only to responsible tasks.
+
+Other than that, progress tracking and Jira management also 
+responsible by me.
+
+Business Letter
+------------------
+All team members responsible to include my feedback into business letter, Timothy responsible
+to do the grammer checking.

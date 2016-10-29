@@ -1,0 +1,31 @@
+<nav class="faq_nav">
+          <button><%=link_to'new',new_fa_q_sub_list_path%></button>
+          <%@faqmainlists.each do |mains|%>
+             <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#maincollapse<%=mains.id%>">
+                  <%=mains.FaqMainName%></a>
+                </h4>
+              </div>
+              <div id="maincollapse<%=mains.id%>" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <%@faqsublists.where(:FaqMainLstId => mains.id).each do |subs|%>
+                      <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h5 class="panel-title">
+                              <a  data-toggle="collapse" data-parent="#accordion" href="#subcollapse<%=subs.id%>">
+                                <%= link_to subs.SubFaqQuestion, subs%></a>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%end%>
+     </nav>

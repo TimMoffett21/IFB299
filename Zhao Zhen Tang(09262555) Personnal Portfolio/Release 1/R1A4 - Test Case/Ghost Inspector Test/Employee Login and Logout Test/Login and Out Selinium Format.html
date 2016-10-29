@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head profile="http://selenium-ide.openqa.org/profiles/test-case">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <link rel="selenium.base" href="https://onthespot-pckdeliveryservice.herokuapp.com" />
+ <title>Login/Logout test</title>
+ <meta name="ghost-inspector-details" content="" />
+ <meta name="ghost-inspector-httpAuthUsername" content="" />
+ <meta name="ghost-inspector-httpAuthPassword" content="" />
+ <meta name="ghost-inspector-browser" content="phantomjs-2" />
+ <meta name="ghost-inspector-userAgent" content="" />
+ <meta name="ghost-inspector-region" content="us-east-1" />
+ <meta name="ghost-inspector-globalStepDelay" content="250" />
+ <meta name="ghost-inspector-maxWaitDelay" content="15000" />
+ <meta name="ghost-inspector-maxAjaxDelay" content="10000" />
+ <meta name="ghost-inspector-viewportSize" content="1024x768" />
+ <meta name="ghost-inspector-screenshotTarget" content="" />
+ <meta name="ghost-inspector-screenshotExclusions" content="" />
+ <meta name="ghost-inspector-screenshotCompareEnabled" content="true" />
+ <meta name="ghost-inspector-screenshotCompareThreshold" content="0.1" />
+ </head>
+ <body>
+ <table cellpadding="1" cellspacing="1" border="1">
+ <thead>
+ <tr>
+ <td rowspan="1" colspan="3">Login/Logout test</td>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>open</td>
+ <td>/login</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectEmail_WrongPassword: Select Email textfield.-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectEmail_WrongPassword: Enter exist Email.-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#session_email</td>
+ <td>zhaozhentang8@hotmail.com</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectEmail_WrongPassword: Select password field.-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_password</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#session_password</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectEmail_WrongPassword: Enter wrong password "1234abcd"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_password</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#session_password</td>
+ <td>1234abcd</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectEmail_WrongPassword:  Submit failed, error message prompt-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectPassword_WrongEmail:  Enter correct password "abcd1234" for zhaozhentang8@hotmail.com-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_password</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#session_password</td>
+ <td>abcd1234</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectPassword_WrongEmail:  select email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectPassword_WrongEmail:  enter wrong email address-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#session_email</td>
+ <td>zhaozhentang9@hotmail.com</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--TestCorrectPassword_WrongEmail:  Commit failure, error message prompt-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test Correct Email and Password: assign correct password "abcd1234"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_password</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#session_password</td>
+ <td>abcd1234</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test Correct Email and Password: select email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test Correct Email and Password: enter correct email-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#session_email</td>
+ <td>zhaozhentang8@hotmail.com</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test Correct Email and Password: commit passed, redirect to user profile-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Log Out Test : Select Account drop down list-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=a[href="#"].dropdown-toggle</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=a[href="#"].dropdown-toggle</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Log Out Test :  Confirm Log Out-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=a[href="/logout"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=a[href="/logout"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Log Out Test :  Log Out success-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=a[href="/login"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=a[href="/login"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#session_password</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#session_password</td>
+ <td>abcd1234</td>
+ </tr>
+</tbody>
+ </table>
+ </body>
+ </html>

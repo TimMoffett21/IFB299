@@ -1,0 +1,142 @@
+/* CSS Design for manager option list located at top of management*/
+#manager_optionlist{
+  width: 90%;
+  margin-left: 3%;
+}
+
+#manager-option-button{
+  background-color: #00aaff; /* Light Blue */
+  border: 1px solid green;
+  color: white;
+  width:20%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+#manager-option-button:hover {
+  background-color: #0000FF;
+  color: rgb(255,255,255);
+}
+
+
+
+
+
+
+
+/* CSS Design for manager customer request managerment*/
+.main-box{
+  vertical-align: top;
+  width: 100%;
+}
+
+
+.left-box{
+  float: left;
+  width: 45%;
+  min-height: 500px;
+  
+}
+
+.right-box{
+  float: left;
+  width: 45%;
+  min-height: 500px;
+  margin-left: 5%;
+}
+
+#header{
+  margin-left: 30%;
+}
+
+#container{
+  border: 2px solid black;
+  border-radius: 5px;
+  width : 80%;
+  margin-left: 10%;
+}
+
+#inner-container{
+  width : 80%;
+  margin-left: 10%;
+}
+
+.border{
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.outborder{
+  border: 2px solid #00aaff ;
+  border-radius: 5px;
+}
+
+.buttondesign{
+  border: 1px solid #0000FF;
+  border-radius: 5px;
+  color: rgb(255,255,255);
+  background-color: #00aaff;
+  height:50px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.buttondesign:hover{
+  background-color: #0000FF;
+  color: rgb(255,255,255);
+}
+.center-text{
+  margin-left:10%;
+  font-size: 80%;
+}
+.selection-border{
+  width:90%;
+  margin-left:5%;
+}
+
+#contact-no{
+  
+  float:right;
+}
+
+.table{
+  table-layout:initial;
+}
+
+.abbutton{
+  border: 1px solid #0000FF;
+  border-radius: 5px;
+  color: rgb(255,255,255);
+  background-color: #00aaff;
+  width: 30%;
+  
+}
+
+#employee-absence{
+  width:100%;
+  text-align:center;
+}
+
+#show-user{
+  margin-left:2%;
+}
+
+.padding-left{
+  margin-left :20%;
+  width:70%;
+}
+
+.company{
+  display: none;   
+}
+
+.historyborder{
+  border: 2px solid #00aaff ;
+  border-radius: 5px;
+  width: 50%;
+  margin-left: 25%;
+}

@@ -1,11 +1,9 @@
 class NewsController < ApplicationController
   
-  def newsdetail
-  end
   
   
   def CustomerNews
-    @news= News.all.order("updated_at DESC")
+    @news= News.search(params[:search]).order("updated_at DESC")
   end
   
   def show

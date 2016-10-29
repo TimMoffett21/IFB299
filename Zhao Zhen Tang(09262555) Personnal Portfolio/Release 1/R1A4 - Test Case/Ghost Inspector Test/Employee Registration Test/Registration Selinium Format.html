@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head profile="http://selenium-ide.openqa.org/profiles/test-case">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <link rel="selenium.base" href="https://onthespot-pckdeliveryservice.herokuapp.com" />
+ <title>Test Employee Registration</title>
+ <meta name="ghost-inspector-details" content="" />
+ <meta name="ghost-inspector-httpAuthUsername" content="" />
+ <meta name="ghost-inspector-httpAuthPassword" content="" />
+ <meta name="ghost-inspector-browser" content="phantomjs-2" />
+ <meta name="ghost-inspector-userAgent" content="" />
+ <meta name="ghost-inspector-region" content="us-east-1" />
+ <meta name="ghost-inspector-globalStepDelay" content="250" />
+ <meta name="ghost-inspector-maxWaitDelay" content="15000" />
+ <meta name="ghost-inspector-maxAjaxDelay" content="10000" />
+ <meta name="ghost-inspector-viewportSize" content="1024x768" />
+ <meta name="ghost-inspector-screenshotTarget" content="" />
+ <meta name="ghost-inspector-screenshotExclusions" content="" />
+ <meta name="ghost-inspector-screenshotCompareEnabled" content="true" />
+ <meta name="ghost-inspector-screenshotCompareThreshold" content="0.1" />
+ </head>
+ <body>
+ <table cellpadding="1" cellspacing="1" border="1">
+ <thead>
+ <tr>
+ <td rowspan="1" colspan="3">Test Employee Registration</td>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>open</td>
+ <td>/signup</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Exist Email Test : Enter Exist Email-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_email</td>
+ <td>tangzhaozhen@hotmail.com</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Exist Email Test : Commit Exist Email-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Null Entry Test: Empty user_name textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_name</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_name</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Null Entry Test: Select email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Null Entry Test: Empty email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Null Entry Test: Commit for Test Result-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Input Value : Select user_name textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_name</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_name</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Input Value :Insert correct user_name-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_name</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_name</td>
+ <td>tang zhao zhen</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test : Select email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test: Email input with no "@", middle and ".com"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_email</td>
+ <td>tangzhaozhen</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test: Commit test email verification: Email input with no "@", middle and ".com"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test:  Select email textfield.-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test: Email input with no middle string and ".com"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_email</td>
+ <td>tangzhaozhen@</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test:Commit Email input with no middle string and ".com"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test: Select email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test: Email input with no ".com"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_email</td>
+ <td>tangzhaozhen8@hotmail</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Email Validation Test: Commit with Email input with no ".com"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for password mismatch : select password secretfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for password mismatch : enter password with value "abcd1234"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_password</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#user_password</td>
+ <td>abcd1234</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for password mismatch : select password_confirmation secretfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_password_confirmation</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_password_confirmation</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for password mismatch : enter password_confirmation with value "1234abcd"-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_password_confirmation</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#user_password_confirmation</td>
+ <td>1234abcd</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for password mismatch:Commit for text result, result should be false, error message prompt.-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for correct and complete input: select user_email textfield-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for correct and complete input: enter unique and correct email-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_email</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#user_email</td>
+ <td>zhaozhentang8@hotmail.com</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for correct and complete input: select password secret field-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_password</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#user_password</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for correct and complete input: enter "abcd1234" into password field-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_password</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#user_password</td>
+ <td>abcd1234</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for correct and complete input: enter "abcd1234" into password_confirmation field-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#user_password_confirmation</td>
+ <td></td>
+ </tr>
+<tr data-private="true">
+ <td>type</td>
+ <td>css=#user_password_confirmation</td>
+ <td>abcd1234</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<!--Test for correct and complete input: Submit correct and complete form, data will be accepted and user will be transfer to login profile page.-->
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[name="commit"]</td>
+ <td></td>
+ </tr>
+</tbody>
+ </table>
+ </body>
+ </html>

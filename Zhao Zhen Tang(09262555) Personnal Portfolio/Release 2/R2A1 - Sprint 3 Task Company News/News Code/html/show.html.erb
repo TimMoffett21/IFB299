@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+
+  <h2>Manager News Management</h2>
+  <%= link_to 'Add New','new' , :class =>'btn',:id =>"manager-new-item-add"%><br><br>
+    <div class="container">
+      <div class="panel-group">
+        <%@news.each do |n| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <div class="corner">
+                      <h4 id="news-header"><%=n.title%></h4>
+                      <%= button_to 'Delete', news_path(n),:id=> "manager-news-item-delete",
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %>
+                      <%= link_to "Edit", edit_news_path(n),:id => "manager-news-item-edit"%>
+                      
+                  </div>
+              </div>
+              <div class="panel-body">
+                  <p><u><%=n.updated_at.strftime("Posted Date: %d/%m/%Y , %I:%M%p")%></u></p>
+                  <p style="white-space: pre-line;"><%=n.content%></p>
+              </div>
+            </div>
+            <br>
+        <%end%>
+       </div>
+    </div>
+
+</html>

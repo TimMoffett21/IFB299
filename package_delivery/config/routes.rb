@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   
   resources :fa_q_main_lists
   resources :fa_q_sub_lists
+ 
   resources :contacts
   resources :pickups do
     collection do
@@ -84,8 +85,6 @@ Rails.application.routes.draw do
       get :newsdetail
     end
   end
-    
-
   
   
   
